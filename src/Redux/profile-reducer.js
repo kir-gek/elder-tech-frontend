@@ -30,7 +30,31 @@ const profileReducer = (state = initialState, action) => {
                             ...state.student,
                             name: action.newValue
                         }
-                    }
+                    };
+                case 'surname':
+                    return {
+                        ...state,
+                        student: {
+                            ...state.student,
+                            surname: action.newValue
+                        }
+                    };
+                case 'secondName':
+                    return {
+                        ...state,
+                        student: {
+                            ...state.student,
+                            secondName: action.newValue
+                        }
+                    };
+                case 'age':
+                    return {
+                        ...state,
+                        student: {
+                            ...state.student,
+                            age: action.newValue
+                        }
+                    };
             }
         };
         case PASSIVE_FORM:
