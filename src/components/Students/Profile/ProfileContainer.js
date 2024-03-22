@@ -1,16 +1,30 @@
 import { connect } from "react-redux";
 import { StudentProfile } from "./Profile";
+import { activeFormAC, changeInfoAC, passiveFormAC } from "../../../Redux/profile-reducer";
 
 const mapStateToProps = (state) => {
+    const student = state.StudentProfilePage.student
+    state = state.StudentProfilePage
     return {
-        name: state.StudentProfilePage.name,
-        surname: state.StudentProfilePage.surname,
-        secondName: state.StudentProfilePage.secondName,
-        age: state.StudentProfilePage.age
+        name: student.name,
+        surname: student.surname,
+        secondName: student.secondName,
+        age: student.age,
+        formActive: state.formActive
     }
 }
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        activeForm: () => {
+            dispatch(activeFormAC())
+        },
+        passiveForm: () => {
+            dispatch(passiveFormAC())
+        },
+        changeInfo: (item, newValue) =>{
+            dispatch(changeInfoAC(item, newValue))
+        }
+    }
 }
 
 export const StudentProfileContainer = connect(mapStateToProps, mapDispatchToProps)(StudentProfile);
