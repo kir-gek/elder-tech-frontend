@@ -3,14 +3,36 @@ const PASSIVE_FORM = "PASSIVE-FORM"
 const CHANGE_INFO = "CHANGE-INFO"
 
 let initialState = {
-    student: {
+    students: [{
         id: 1,
         name: 'Кирилл',
-        surname: 'Гекман',
-        secondName: 'Эдупдович',
+        surname: 'Кириллов',
+        secondName: 'Кириллович',
         age: 99,
         isMan: true
-    }   ,
+    }, {
+        id: 2,
+        name: 'Дмитрий',
+        surname: 'Дмитров',
+        secondName: 'Дмитриевич',
+        age: 98,
+        isMan: true
+    }, {
+        id: 3,
+        name: 'Илья',
+        surname: 'Ильев',
+        secondName: 'Ильич',
+        age: 97,
+        isMan: true
+    }, {
+        id: 4,
+        name: 'Тимур',
+        surname: 'Тимуров',
+        secondName: 'Тимрович',
+        age: 96,
+        isMan: true
+    }
+    ],
     formActive: false
 }
 
@@ -22,40 +44,14 @@ const studentProfileReducer = (state = initialState, action) => {
                 formActive: true
             };
         case CHANGE_INFO: {
-            switch (action.item) {
-                case 'name':
-                    return {
-                        ...state,
-                        student: {
-                            ...state.student,
-                            name: action.newValue
-                        }
-                    };
-                case 'surname':
-                    return {
-                        ...state,
-                        student: {
-                            ...state.student,
-                            surname: action.newValue
-                        }
-                    };
-                case 'secondName':
-                    return {
-                        ...state,
-                        student: {
-                            ...state.student,
-                            secondName: action.newValue
-                        }
-                    };
-                case 'age':
-                    return {
-                        ...state,
-                        student: {
-                            ...state.student,
-                            age: action.newValue
-                        }
-                    };
-            }
+            return {
+                ...state,
+                students: state.students.map(student =>
+                    student.id === action.studentId
+                        ? { ...student, [action.item]: action.newValue }
+                        : student
+                )
+            };
         };
         case PASSIVE_FORM:
             return {
@@ -67,7 +63,7 @@ const studentProfileReducer = (state = initialState, action) => {
     }
 }
 
-export const changeInfoAC = (item, newValue) => ({ type: CHANGE_INFO, item, newValue })
+export const changeInfoAC = (studentId, item, newValue) => ({ type: CHANGE_INFO, studentId, item, newValue })
 export const passiveFormAC = () => ({ type: PASSIVE_FORM })
 export const activeFormAC = () => ({ type: ACTIVE_FORM })
 export default studentProfileReducer;

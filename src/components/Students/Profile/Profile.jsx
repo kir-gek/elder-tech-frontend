@@ -15,7 +15,7 @@ export const StudentProfile = (props) => {
             Возраст: {props.age} <p></p>
             <button onClick={openForm}>редактировать данные</button>
             <Form name={props.name} surname={props.surname} secondName={props.secondName} age={props.age} formActive={props.formActive}
-                passiveForm={props.passiveForm} changeInfo={props.changeInfo} />
+                passiveForm={props.passiveForm} changeInfo={props.changeInfo} studentId={props.studentId}/>
         </div>
     )
 }
@@ -32,9 +32,9 @@ const Form = (props) => {
 
     const change = (event) => { //объект event доступен внутри колбэк функции
         let newValue = event.target.value
-        debugger;
         const item = event.target.id
-        props.changeInfo(item, newValue)
+        const studentID = props.studentId
+        props.changeInfo(studentID, item, newValue)
     }
 
     return (

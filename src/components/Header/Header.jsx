@@ -8,6 +8,15 @@ export const Header = () => {
             <img src={Logo} />
             Версия для слабовидящих
             <div>
+                <NavLink to='/teacher/my-students'>Мои студенты</NavLink>
+            </div>
+            <div>
+                <NavLink to='/teacher/my-courses'>Мои курсы</NavLink>
+            </div>
+            <div>
+                <NavLink to='/teacher/profile'>Профиль</NavLink>
+            </div>
+            <div>
                 <img src={Login} />
                 <NavLink to="/login"> Войти </NavLink>
             </div>

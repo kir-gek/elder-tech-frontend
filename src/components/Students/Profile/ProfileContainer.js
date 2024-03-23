@@ -3,13 +3,14 @@ import { StudentProfile } from "./Profile";
 import { activeFormAC, changeInfoAC, passiveFormAC } from "../../../Redux/student-profile-reducer";
 
 const mapStateToProps = (state) => {
-    const student = state.StudentProfilePage.student
+    const student = state.StudentProfilePage.students[0]
     state = state.StudentProfilePage
     return {
         name: student.name,
         surname: student.surname,
         secondName: student.secondName,
         age: student.age,
+        studentId: student.id,
         formActive: state.formActive
     }
 }
@@ -21,8 +22,8 @@ const mapDispatchToProps = (dispatch) => {
         passiveForm: () => {
             dispatch(passiveFormAC())
         },
-        changeInfo: (item, newValue) =>{
-            dispatch(changeInfoAC(item, newValue))
+        changeInfo: (studentId, item, newValue) =>{
+            dispatch(changeInfoAC(studentId, item, newValue))
         }
     }
 }
