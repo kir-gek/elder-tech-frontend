@@ -1,6 +1,6 @@
-const ACTIVE_FORM = "ACTIVE-FORM"
-const PASSIVE_FORM = "PASSIVE-FORM"
-const CHANGE_INFO = "CHANGE-INFO"
+const ACTIVE_FORM_STUDENT = "ACTIVE-FORM-STUDENT"
+const PASSIVE_FORM_STUDENT = "PASSIVE-FORM-STUDENT"
+const CHANGE_INFO_STUDENT = "CHANGE-INFO-STUDENT"
 
 let initialState = {
     students: [{
@@ -38,12 +38,12 @@ let initialState = {
 
 const studentProfileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTIVE_FORM:
+        case ACTIVE_FORM_STUDENT:
             return {
                 ...state,
                 formActive: true
             };
-        case CHANGE_INFO: {
+        case CHANGE_INFO_STUDENT: {
             return {
                 ...state,
                 students: state.students.map(student =>
@@ -53,7 +53,7 @@ const studentProfileReducer = (state = initialState, action) => {
                 )
             };
         };
-        case PASSIVE_FORM:
+        case PASSIVE_FORM_STUDENT:
             return {
                 ...state,
                 formActive: false
@@ -63,7 +63,7 @@ const studentProfileReducer = (state = initialState, action) => {
     }
 }
 
-export const changeInfoAC = (studentId, item, newValue) => ({ type: CHANGE_INFO, studentId, item, newValue })
-export const passiveFormAC = () => ({ type: PASSIVE_FORM })
-export const activeFormAC = () => ({ type: ACTIVE_FORM })
+export const changeInfoStudentAC = (studentId, item, newValue) => ({ type: CHANGE_INFO_STUDENT, studentId, item, newValue })
+export const passiveFormStudentAC = () => ({ type: PASSIVE_FORM_STUDENT })
+export const activeFormStudentAC = () => ({ type: ACTIVE_FORM_STUDENT })
 export default studentProfileReducer;

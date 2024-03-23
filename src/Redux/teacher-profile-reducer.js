@@ -1,6 +1,6 @@
-const ACTIVE_FORM = "ACTIVE-FORM"
-const PASSIVE_FORM = "PASSIVE-FORM"
-const CHANGE_INFO = "CHANGE-INFO"
+const ACTIVE_FORM_TEACHER = "ACTIVE-FORM-TEACHER"
+const PASSIVE_FORM_TEACHER = "PASSIVE-FORM-TEACHER"
+const CHANGE_INFO_TEACHER = "CHANGE-INFO-TEACHER"
 
 let initialState = {
     teacher: {
@@ -16,12 +16,12 @@ let initialState = {
 
 const teacherProfileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTIVE_FORM:
+        case ACTIVE_FORM_TEACHER:
             return {
                 ...state,
                 formActive: true
             };
-        case CHANGE_INFO: {
+        case CHANGE_INFO_TEACHER: {
             return {
                 ...state,
                 teacher: {
@@ -30,7 +30,7 @@ const teacherProfileReducer = (state = initialState, action) => {
                 }
             };
         };
-        case PASSIVE_FORM:
+        case PASSIVE_FORM_TEACHER:
             return {
                 ...state,
                 formActive: false
@@ -40,7 +40,7 @@ const teacherProfileReducer = (state = initialState, action) => {
     }
 }
 
-export const changeInfoAC = (item, newValue) => ({ type: CHANGE_INFO, item, newValue })
-export const passiveFormAC = () => ({ type: PASSIVE_FORM })
-export const activeFormAC = () => ({ type: ACTIVE_FORM })
+export const changeInfoTeacherAC = (item, newValue) => ({ type: CHANGE_INFO_TEACHER, item, newValue })
+export const passiveFormTeacherAC = () => ({ type: PASSIVE_FORM_TEACHER })
+export const activeFormTeacherAC = () => ({ type: ACTIVE_FORM_TEACHER })
 export default teacherProfileReducer;
