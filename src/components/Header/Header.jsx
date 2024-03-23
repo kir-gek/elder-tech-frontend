@@ -6,6 +6,7 @@ export const Header = () => {
     return (
         <div className={s.Header}>
             <img src={Logo} />
+            <NavLink to='/'>Стартовая</NavLink>
             Версия для слабовидящих
             <div>
                 <NavLink to='/teacher/my-students'>Мои студенты</NavLink>
