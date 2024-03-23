@@ -1,9 +1,11 @@
-import profileReducer from "./profile-reducer"
+import studentProfileReducer from "./student-profile-reducer"
 import {combineReducers, legacy_createStore as createStore} from "redux";
+import teacherProfileReducer from "./teacher-profile-reducer";
 
 
 let reducers = combineReducers({
-    StudentProfilePage: profileReducer
+    StudentProfilePage: studentProfileReducer,
+    TeacherProfilePage: teacherProfileReducer
 });
 
 let store = createStore(reducers);

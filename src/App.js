@@ -5,6 +5,7 @@ import { Header } from './components/Header/Header';
 import { Login } from './components/Login/Login';
 import { StartPage } from './components/StartPage/StartPage';
 import { StudentProfileContainer } from './components/Students/Profile/ProfileContainer';
+import { TeacherProfileContainer } from './components/Teacher/Profile/ProfileContainer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='' element={<StartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path='/student/profile' element={<StudentProfileContainer />} />
+        <Route path='/teacher/profile' element={<TeacherProfileContainer />} />
       </Routes>
       <Footer />
     </div>

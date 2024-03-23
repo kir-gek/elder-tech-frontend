@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { StudentProfile } from "./Profile";
-import { activeFormAC, changeInfoAC, passiveFormAC } from "../../../Redux/profile-reducer";
+import { activeFormAC, changeInfoAC, passiveFormAC } from "../../../Redux/student-profile-reducer";
 
 const mapStateToProps = (state) => {
     const student = state.StudentProfilePage.student
