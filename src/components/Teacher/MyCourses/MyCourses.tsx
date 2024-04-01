@@ -1,21 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { CourseModel } from "../../../types/Course";
 import {
   addNewCourse,
   changeValueCourseForm,
-} from "../../../Redux/teacher-myCourses-reducer";
+  getCourses,
+  getFormValueDescription,
+  getFormValueName,
+} from "../../../redux/teacher-myCourses-reducer";
 
 export const MyCourses = () => {
-  const courses: CourseModel[] = useSelector(
-    (state) => state.teacherMyCourses.courses
-  );
-
-  const newCourse: string = useSelector(
-    (state) => state.teacherMyCourses.formValueName
-  );
-  const newDescription: string = useSelector(
-    (state) => state.teacherMyCourses.formValueDescription
-  );
+  const courses = useSelector(getCourses);
+  const formValueName = useSelector(getFormValueName);
+  const formValueDescription = useSelector(getFormValueDescription);
 
   const dispatch = useDispatch();
 
@@ -24,12 +19,12 @@ export const MyCourses = () => {
   };
 
   const changeNewName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let textName:string = newCourse;
-    let textDescription:string = newDescription;
+    let textName: string = formValueName;
+    let textDescription: string = formValueDescription;
     event.target.id === "title"
       ? (textName = event.target.value)
       : (textDescription = event.target.value);
-    dispatch(changeValueCourseForm({textName, textDescription}));
+    dispatch(changeValueCourseForm({ textName, textDescription }));
   };
 
   const coursesJSX = courses.map((el) => (
@@ -49,14 +44,14 @@ export const MyCourses = () => {
         </div>
         Курс:
         <input
-          value={newCourse}
+          value={formValueName}
           id="title"
           onChange={changeNewName}
         ></input>{" "}
         <p></p>
         Описание курса:
         <input
-          value={newDescription}
+          value={formValueDescription}
           id="description"
           onChange={changeNewName}
         ></input>

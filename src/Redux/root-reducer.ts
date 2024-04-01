@@ -1,12 +1,14 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import studentProfileReducer from "./student-profile-reducer";
-import teacherProfileReducer from "./teacher-profile-reducer";
-import teacherMyCoursesReducer from "./teacher-myCourses-reducer";
+import studentProfile from "./student-profile-reducer";
+import teacherProfile from "./teacher-profile-reducer";
+import teacherMyCourses from "./teacher-myCourses-reducer";
 
 
 export const rootReducer = combineReducers({
-    studentProfile: studentProfileReducer,
-    teacherProfile: teacherProfileReducer,
-    teacherMyCourses: teacherMyCoursesReducer
+    studentProfile,
+    teacherProfile,
+    teacherMyCourses
 });
+
+export const selectSelf = (state: IRootState) => state;
 export type IRootState = ReturnType<typeof rootReducer>;

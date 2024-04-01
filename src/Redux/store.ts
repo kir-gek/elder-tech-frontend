@@ -4,5 +4,4 @@ import { rootReducer } from "./root-reducer";
 let store = configureStore({ reducer: rootReducer });
 export type AppDispatch = typeof store.dispatch;
 
-window.store = store
 export default store;

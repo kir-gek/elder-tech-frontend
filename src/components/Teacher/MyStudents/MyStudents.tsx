@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import s from "./MyStudents.module.css";
 import { UserModel } from "../../../types/User";
+import { IRootState } from "../../../redux/root-reducer";
 
 export const MyStudents = () => {
-
   const studentsState: UserModel[] = useSelector(
-    (state) => state.studentProfile.students
+    (state:IRootState) => state.studentProfile.students
   );
 
   const students = studentsState.map((el) => (

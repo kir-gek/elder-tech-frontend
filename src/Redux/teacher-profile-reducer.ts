@@ -3,7 +3,6 @@ import { UserModel } from "../types/User";
 
 interface TeacherProfileSliceState {
     teacher: UserModel,
-    formActive: boolean
 }
 interface ChangeInfoTeacherAction {
     item: string; newValue: string
@@ -18,8 +17,7 @@ const initialState: TeacherProfileSliceState = {
         secondName: 'Гекманович',
         age: 29,
         isMan: true
-    },
-    formActive: false
+    }
 }
 
 const teacherProfileSlice = createSlice({
@@ -32,14 +30,13 @@ const teacherProfileSlice = createSlice({
                 [action.payload.item]: action.payload.newValue    // вот это наверн не оч тут spread оператор (...)
             }
         },
-        setFormActiveTeacher(state, action: PayloadAction<boolean>) {
-            state.formActive = action.payload
-        }
+
     }
 }
 )
 
-export const { changeInfoTeacher, setFormActiveTeacher } = teacherProfileSlice.actions
+
+export const { changeInfoTeacher } = teacherProfileSlice.actions
 
 export default teacherProfileSlice.reducer
 

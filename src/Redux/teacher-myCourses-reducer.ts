@@ -1,7 +1,9 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createDraftSafeSelector, createSelector, createSlice } from "@reduxjs/toolkit";
 import { CourseModel } from "../types/Course"
+import { IRootState, selectSelf } from "./root-reducer";
+import { useSelector } from "react-redux";
 
-interface teacherProfileMyCoursesSliceState {
+export interface teacherProfileMyCoursesSliceState {
     courses: CourseModel[],
     formValueName: string,
     formValueDescription: string
@@ -29,13 +31,24 @@ const teacherProfileMyCoursesSlice = createSlice({
             state.formValueName = action.payload.textName;
             state.formValueDescription = action.payload.textDescription
         },
-        addNewCourse(state, action) {  //если экшен без пейлоада, если в нем только свойство Type
+        addNewCourse(state) {  //если экшен без пейлоада, если в нем только свойство Type
             state.courses.push({ id: 5, title: state.formValueName, description: state.formValueDescription });
             state.formValueName = 'введите название курса';
             state.formValueDescription = 'введите описание курса'
         }
     }
 })
+
+// const findCourseByTitle = (title:string) => createSelector(
+//     (state: IRootState) => state.teacherMyCourses.courses,
+//     (courses) => courses.find((course: CourseModel) => course.title === title))    
+
+export const getFormValueName = (state:IRootState) => state.teacherMyCourses.formValueName
+export const getCourses = (state:IRootState) => state.teacherMyCourses.courses
+export const getFormValueDescription = (state:IRootState) => state.teacherMyCourses.formValueDescription
+
+
+
 
 export default teacherProfileMyCoursesSlice.reducer
 

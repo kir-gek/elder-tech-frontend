@@ -1,18 +1,16 @@
 import { useDispatch } from "react-redux";
 import s from "./Form.module.css";
-import {
-  changeInfoStudent,
-  setFormActiveStudent,
-} from "../../../../Redux/student-profile-reducer";
+import { changeInfoStudent } from "../../../../redux/student-profile-reducer";
+import { UserModel } from "../../../../types/User";
 
-interface FormStudentProps {
+type FormStudentProps = Pick<
+  UserModel,
+  "name" | "surname" | "secondName" | "age"
+> & {
   studentId: number;
-  name: string;
-  surname: string;
-  secondName: string;
-  age: number;
   formActive: boolean;
-}
+  setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export const FormStudent = ({
   studentId,
@@ -21,11 +19,12 @@ export const FormStudent = ({
   secondName,
   age,
   formActive,
+  setFormActive,
 }: FormStudentProps) => {
   const dispatch = useDispatch();
 
   const closeForm = () => {
-    dispatch(setFormActiveStudent(false));
+    setFormActive(false);
   };
 
   const change = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +55,5 @@ export const FormStudent = ({
         <button onClick={closeForm}>Закрыть редактирование</button>
       </div>
     );
-
-  } 
-
+  }
 };

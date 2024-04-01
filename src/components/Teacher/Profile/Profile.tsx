@@ -1,21 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { UserModel } from "../../../types/User";
-import { setFormActiveTeacher } from "../../../Redux/teacher-profile-reducer";
 import { FormTeacher } from "./Form/FormTeacher";
+import { useState } from "react";
+import { IRootState } from "../../../redux/root-reducer";
 
 export const TeacherProfile = () => {
+  const [formActive, setFormActive] = useState<boolean>(false);
+
   const teacher: UserModel = useSelector(
-    (state) => state.teacherProfile.teacher
+    (state: IRootState) => state.teacherProfile.teacher
   );
-
-  const formActive: boolean = useSelector(
-    (state) => state.teacherProfile.formActive
-  );
-
-  const dispatch = useDispatch();
 
   const openForm = () => {
-    dispatch(setFormActiveTeacher(true));
+    setFormActive(true);
   };
 
   return (
@@ -32,6 +29,7 @@ export const TeacherProfile = () => {
         secondName={teacher.secondName}
         age={teacher.age}
         formActive={formActive}
+        setFormActive={setFormActive}
       />
     </div>
   );

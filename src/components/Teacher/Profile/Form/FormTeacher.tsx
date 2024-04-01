@@ -1,9 +1,6 @@
 import { useDispatch } from "react-redux";
 import s from "./Profile.module.css";
-import {
-  changeInfoTeacher,
-  setFormActiveTeacher,
-} from "../../../../Redux/teacher-profile-reducer";
+import { changeInfoTeacher } from "../../../../redux/teacher-profile-reducer";
 
 interface FormPropsTeacher {
   name: string;
@@ -11,6 +8,7 @@ interface FormPropsTeacher {
   secondName: string;
   age: number;
   formActive: boolean;
+  setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export const FormTeacher = ({
   name,
@@ -18,13 +16,14 @@ export const FormTeacher = ({
   secondName,
   age,
   formActive,
+  setFormActive,
 }: FormPropsTeacher) => {
   let formStyle = s.formNo;
 
   const dispatch = useDispatch();
 
   const closeForm = () => {
-    dispatch(setFormActiveTeacher(false));
+    setFormActive(false);
   };
 
   const change = (event: React.ChangeEvent<HTMLInputElement>) => {

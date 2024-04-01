@@ -4,7 +4,6 @@ import { IRootState } from "./root-reducer";
 
 interface StudentProfileSliceState {
     students: UserModel[],
-    formActive: boolean
 }
 interface changeInfoStudentAction {
     studentId: number; item: string; newValue: string
@@ -40,8 +39,7 @@ const initialState: StudentProfileSliceState = {
         age: 96,
         isMan: true
     }
-    ],
-    formActive: true
+    ]
 }
 
 const studentProfileSlice = createSlice({
@@ -55,9 +53,7 @@ const studentProfileSlice = createSlice({
                     : student
             );
         },
-        setFormActiveStudent(state, action: PayloadAction<boolean>) {
-            state.formActive = action.payload
-        },
+
     },
 })
 
@@ -68,6 +64,6 @@ export const selectStudentById = (id: number) =>
     );
 
 
-export const { changeInfoStudent, setFormActiveStudent } = studentProfileSlice.actions;
+export const { changeInfoStudent } = studentProfileSlice.actions;
 
 export default studentProfileSlice.reducer;
