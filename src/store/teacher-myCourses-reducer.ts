@@ -1,7 +1,6 @@
-import { PayloadAction, createDraftSafeSelector, createSelector, createSlice } from "@reduxjs/toolkit";
-import { CourseModel } from "../types/Course"
-import { IRootState, selectSelf } from "./root-reducer";
-import { useSelector } from "react-redux";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IRootState } from "./root-reducer";
+import { CourseModel } from "types/Course";
 
 export interface teacherProfileMyCoursesSliceState {
     courses: CourseModel[],
@@ -39,13 +38,10 @@ const teacherProfileMyCoursesSlice = createSlice({
     }
 })
 
-// const findCourseByTitle = (title:string) => createSelector(
-//     (state: IRootState) => state.teacherMyCourses.courses,
-//     (courses) => courses.find((course: CourseModel) => course.title === title))    
 
-export const getFormValueName = (state:IRootState) => state.teacherMyCourses.formValueName
-export const getCourses = (state:IRootState) => state.teacherMyCourses.courses
-export const getFormValueDescription = (state:IRootState) => state.teacherMyCourses.formValueDescription
+export const getFormValueName = (state: IRootState) => state.teacherMyCourses.formValueName
+export const getCourses = (state: IRootState) => state.teacherMyCourses.courses
+export const getFormValueDescription = (state: IRootState) => state.teacherMyCourses.formValueDescription
 
 
 

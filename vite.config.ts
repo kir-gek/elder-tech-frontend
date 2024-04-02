@@ -11,8 +11,9 @@ export default defineConfig({
       api: "/src/api",
       assets: "/src/assets",
       components: "/src/components",
-      redux: "/src/redux",
+      store: "/src/store",
       types: "/src/types",
     },
-  }
+  },
+  
 })

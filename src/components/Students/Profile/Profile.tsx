@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { FormStudent } from "./Form/FormStudent";
 import { useState } from "react";
 import { UserModel } from "types/User";
-import { selectStudentById } from "redux/student-profile-reducer";
+import { selectStudentById } from "store/student-profile-reducer";
 
 interface StudentProfileProps {
   studentId: number;

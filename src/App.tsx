@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Footer } from "./components/Footer/Footer";
-import { Header } from "./components/Header/Header";
-import { Login } from "./components/Login/Login";
-import { StartPage } from "./components/StartPage/StartPage";
-import { StudentProfile } from "./components/Students/Profile/Profile";
-import { TeacherProfile } from "./components/Teacher/Profile/Profile";
-import { MyStudents } from "./components/Teacher/MyStudents/MyStudents";
-import { MyCourses } from "./components/Teacher/MyCourses/MyCourses";
+import { Footer } from "components/Footer/Footer";
+import { Header } from "components/Header/Header";
+import { Login } from "components/Login/Login";
+import { StartPage } from "components/StartPage/StartPage";
+import { StudentProfile } from "components/Students/Profile/Profile";
+import { TeacherProfile } from "components/Teacher/Profile/Profile";
+import { MyStudents } from "components/Teacher/MyStudents/MyStudents";
+import { MyCourses } from "components/Teacher/MyCourses/MyCourses";
 
 function App() {
   return (

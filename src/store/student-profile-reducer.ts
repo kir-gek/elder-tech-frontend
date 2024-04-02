@@ -1,6 +1,6 @@
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
-import { UserModel } from "../types/User";
 import { IRootState } from "./root-reducer";
+import { UserModel } from "types/User";
 
 interface StudentProfileSliceState {
     students: UserModel[],
@@ -62,6 +62,9 @@ export const selectStudentById = (id: number) =>
         (state: IRootState) => state.studentProfile.students,
         (students) => students && students.find((student: UserModel) => student.id === id)
     );
+
+export const getStudents = (state: IRootState) => state.studentProfile.students
+
 
 
 export const { changeInfoStudent } = studentProfileSlice.actions;

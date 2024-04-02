@@ -5,7 +5,7 @@ import {
   getCourses,
   getFormValueDescription,
   getFormValueName,
-} from "../../../redux/teacher-myCourses-reducer";
+} from "store/teacher-myCourses-reducer";
 
 export const MyCourses = () => {
   const courses = useSelector(getCourses);

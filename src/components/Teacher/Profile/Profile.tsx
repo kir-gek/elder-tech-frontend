@@ -1,15 +1,13 @@
 import { useSelector } from "react-redux";
-import { UserModel } from "../../../types/User";
+import { UserModel } from "types/User";
 import { FormTeacher } from "./Form/FormTeacher";
 import { useState } from "react";
-import { IRootState } from "../../../redux/root-reducer";
+import { getTeacher } from "store/teacher-profile-reducer";
 
 export const TeacherProfile = () => {
   const [formActive, setFormActive] = useState<boolean>(false);
 
-  const teacher: UserModel = useSelector(
-    (state: IRootState) => state.teacherProfile.teacher
-  );
+  const teacher: UserModel = useSelector(getTeacher);
 
   const openForm = () => {
     setFormActive(true);

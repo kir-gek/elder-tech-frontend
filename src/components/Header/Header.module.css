@@ -1,12 +1,11 @@
-.Header{
-    background-color: aqua;
-    border-style: dotted;
-    height: 15vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
+.Header {
+  background-color: aqua;
+  border-style: dotted;
+  height: 15vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 img {
-    height: 80%;
+  height: 80%;
 }

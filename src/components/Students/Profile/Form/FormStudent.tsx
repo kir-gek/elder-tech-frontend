@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import s from "./Form.module.css";
-import { changeInfoStudent } from "../../../../redux/student-profile-reducer";
-import { UserModel } from "../../../../types/User";
+import { changeInfoStudent } from "store/student-profile-reducer";
+import { UserModel } from "types/User";
 
 type FormStudentProps = Pick<
   UserModel,

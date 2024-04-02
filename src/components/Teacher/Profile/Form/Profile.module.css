@@ -1,8 +1,7 @@
-.formNo{
-    visibility: hidden;
+.formNo {
+  visibility: hidden;
 }
 
-.formYes{
-    visibility: visible;
-
+.formYes {
+  visibility: visible;
 }

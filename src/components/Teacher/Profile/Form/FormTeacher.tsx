@@ -1,15 +1,15 @@
 import { useDispatch } from "react-redux";
 import s from "./Profile.module.css";
-import { changeInfoTeacher } from "../../../../redux/teacher-profile-reducer";
+import { changeInfoTeacher } from "store/teacher-profile-reducer";
+import { UserModel } from "types/User";
 
-interface FormPropsTeacher {
-  name: string;
-  surname: string;
-  secondName: string;
-  age: number;
+type FormPropsTeacher = Pick<
+  UserModel,
+  "name" | "surname" | "secondName" | "age"
+> & {
   formActive: boolean;
   setFormActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 export const FormTeacher = ({
   name,
   surname,

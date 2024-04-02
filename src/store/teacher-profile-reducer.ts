@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { UserModel } from "../types/User";
+import { UserModel } from "types/User";
+import { IRootState } from "./root-reducer";
 
 interface TeacherProfileSliceState {
     teacher: UserModel,
@@ -35,6 +36,7 @@ const teacherProfileSlice = createSlice({
 }
 )
 
+export const getTeacher = (state: IRootState) => state.teacherProfile.teacher
 
 export const { changeInfoTeacher } = teacherProfileSlice.actions
 
