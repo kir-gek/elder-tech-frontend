@@ -1,7 +1,11 @@
+import Photo from "assets/images/home-page-near-title.png";
 export const StartPage = () => {
   return (
     <div>
-      ElderTech
+      <div className="flex justify-around">
+        <p className="">Образовательный проект для людей старшего возраста</p>
+        <img className="h-32" src={Photo}></img>
+      </div>
       <span>Здесь какой-то текст</span>
       <h3>Завлекающий текст</h3>
       <img className="img" />
