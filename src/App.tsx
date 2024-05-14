@@ -11,19 +11,21 @@ import { MyCourses } from "components/Teacher/MyCourses/MyCourses";
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <Routes>
-        <Route path="" element={<StartPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/student/profile"
-          element={<StudentProfile studentId={1} />}
-        />
-        <Route path="/teacher/profile" element={<TeacherProfile />} />
-        <Route path="/teacher/my-students" element={<MyStudents />} />
-        <Route path="/teacher/my-courses" element={<MyCourses />} />
-      </Routes>
+      <main className="flex-grow mt-16">
+        <Routes>
+          <Route path="" element={<StartPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/student/profile"
+            element={<StudentProfile studentId={1} />}
+          />
+          <Route path="/teacher/profile" element={<TeacherProfile />} />
+          <Route path="/teacher/my-students" element={<MyStudents />} />
+          <Route path="/teacher/my-courses" element={<MyCourses />} />
+        </Routes>
+      </main>
       <Footer />
     </div>
   );

@@ -36,30 +36,43 @@ export const MyCourses = () => {
   ));
 
   return (
+    <div className="max-w-lg mx-auto p-6">
     <div>
+      <h3 className="text-xl font-semibold mb-4">Мои курсы</h3>
       {coursesJSX}
+    </div>
+    <div className="mt-8">
+      <h3 className="text-xl font-semibold mb-4">Добавление курса</h3>
       <div>
-        <div>
-          <h3>Добавление курса</h3>
-        </div>
-        Курс:
-        <input
-          value={formValueName}
-          id="title"
-          onChange={changeNewName}
-        ></input>{" "}
-        <p></p>
-        Описание курса:
-        <input
-          value={formValueDescription}
-          id="description"
-          onChange={changeNewName}
-        ></input>
-        <p></p>
-        <button onClick={addCourse}>Добавить курс</button>
+        <label htmlFor="title" className="block mb-2">
+          Курс:
+          <input
+            type="text"
+            id="title"
+            value={formValueName}
+            onChange={changeNewName}
+            className="block w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-500"
+          />
+        </label>
+        <label htmlFor="description" className="block mb-2">
+          Описание курса:
+          <input
+            type="text"
+            id="description"
+            value={formValueDescription}
+            onChange={changeNewName}
+            className="block w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-500"
+          />
+        </label>
+        <button
+          onClick={addCourse}
+          className="block w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+        >
+          Добавить курс
+        </button>
       </div>
     </div>
-  );
+  </div>  );
 };
 
 interface CoursesComponentProps {
@@ -70,9 +83,9 @@ interface CoursesComponentProps {
 
 const CoursesComponent = (props: CoursesComponentProps) => {
   return (
-    <div>
-      Курс: {props.title} <p></p>
-      Описание курса: {props.description}
-    </div>
+    <div className="bg-white shadow-md rounded-lg p-4 mb-4">
+    <h4 className="text-xl font-semibold mb-2">Курс: {props.title}</h4>
+    <p className="text-gray-700 mb-2">Описание курса: {props.description}</p>
+  </div>
   );
 };

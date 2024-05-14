@@ -1,31 +1,30 @@
 import { useSelector } from "react-redux";
-import s from "./MyStudents.module.css";
 import { UserModel } from "types/User";
 import { getStudents } from "store/student-profile-reducer";
 
 export const MyStudents = () => {
   const studentsState: UserModel[] = useSelector(getStudents);
 
-  const students = studentsState.map((el) => (
-    <tr key={el.id}>
-      <td>{el.name}</td>
-      <td>{el.surname}</td>
-      <td>{el.secondName}</td>
-      <td>{el.age}</td>
+  const students = studentsState.map((el, index) => (
+    <tr key={el.id} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
+      <td className="border px-4 py-2">{el.name}</td>
+      <td className="border px-4 py-2">{el.surname}</td>
+      <td className="border px-4 py-2">{el.secondName}</td>
+      <td className="border px-4 py-2">{el.age}</td>
     </tr>
   ));
 
   return (
-    <div className={s.tableContainer}>
-      <h3>Мои студенты</h3>
-      <div className={s.tableWrapper}>
-        <table>
+    <div className="max-w-3xl mx-auto p-6">
+      <h3 className="text-2xl font-semibold mb-4">Мои студенты</h3>
+      <div className="overflow-x-auto">
+        <table className="table-auto w-full">
           <thead>
             <tr>
-              <th>Имя</th>
-              <th>Фамилия</th>
-              <th>Отчество</th>
-              <th>Возраст</th>
+              <th className="border px-4 py-2">Имя</th>
+              <th className="border px-4 py-2">Фамилия</th>
+              <th className="border px-4 py-2">Отчество</th>
+              <th className="border px-4 py-2">Возраст</th>
             </tr>
           </thead>
           <tbody>{students}</tbody>
@@ -33,4 +32,4 @@ export const MyStudents = () => {
       </div>
     </div>
   );
-};
+}

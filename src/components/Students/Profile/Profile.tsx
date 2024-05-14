@@ -22,26 +22,35 @@ export const StudentProfile = ({ studentId }: StudentProfileProps) => {
   return (
     <>
       {student ? (
-        <div>
-          <h3>Профиль студента</h3>
-          Имя: {student.name} <p></p>
-          Фамилия: {student.surname} <p></p>
-          Отчество: {student.secondName} <p></p>
-          Возраст: {student.age} <p></p>
-          <button onClick={openForm}>редактировать данные</button>
-          <FormStudent
-            name={student.name}
-            surname={student.surname}
-            secondName={student.secondName}
-            age={student.age}
-            studentId={studentId}
-            formActive={formActive}
-            setFormActive={setFormActive}
-          />
+        <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
+          <h3 className="text-2xl font-semibold mb-4">Профиль студента</h3>
+          <div className="mb-4">
+            <p><span className="font-semibold">Имя:</span> {student.name}</p>
+            <p><span className="font-semibold">Фамилия:</span> {student.surname}</p>
+            <p><span className="font-semibold">Отчество:</span> {student.secondName}</p>
+            <p><span className="font-semibold">Возраст:</span> {student.age}</p>
+          </div>
+          <button
+            onClick={openForm}
+            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+          >
+            Редактировать данные
+          </button>
+          {formActive && (
+            <FormStudent
+              name={student.name}
+              surname={student.surname}
+              secondName={student.secondName}
+              age={student.age}
+              studentId={studentId}
+              formActive={formActive}
+              setFormActive={setFormActive}
+            />
+          )}
         </div>
       ) : (
-        <div>
-          <h2>Профиля нет</h2>
+        <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
+          <h2 className="text-2xl font-semibold mb-4">Профиля нет</h2>
         </div>
       )}
     </>
