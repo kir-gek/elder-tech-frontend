@@ -8,6 +8,7 @@ import { StudentProfile } from "components/Students/Profile/Profile";
 import { TeacherProfile } from "components/Teacher/Profile/Profile";
 import { MyStudents } from "components/Teacher/MyStudents/MyStudents";
 import { MyCourses } from "components/Teacher/MyCourses/MyCourses";
+import { UserProfile } from "components/User/UserProfile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/teacher/profile" element={<TeacherProfile />} />
           <Route path="/teacher/my-students" element={<MyStudents />} />
           <Route path="/teacher/my-courses" element={<MyCourses />} />
+          <Route path="/user/profile" element={< UserProfile />} /> 
         </Routes>
       </main>
       <Footer />
