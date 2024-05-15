@@ -10,7 +10,7 @@ export const Login: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://45.80.69.116:8080/api/v1/auth/sign-in', {
+      const response = await axios.post('https://45.80.69.116/api/v1/auth/sign-in', {
         phone,
         password
       });

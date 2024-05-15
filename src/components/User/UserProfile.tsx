@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import axiosInstance from 'api/axiosConfig';
 
 export const UserProfile: React.FC = () => {
   const [profile, setProfile] = useState<any>(null);
@@ -8,16 +9,10 @@ export const UserProfile: React.FC = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('http://45.80.69.116:8080/api/v1/courses/1', {
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'http://localhost',
-            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-          },
+        const response = await axiosInstance.get('/users/1', {
           withCredentials: true
         });
-        console.log(response.data);
+        console.log(response.data)
         setProfile(response.data);
       } catch (error) {
         setError('Ошибка загрузки профиля: ' + (error.response?.data?.message || error.message));
