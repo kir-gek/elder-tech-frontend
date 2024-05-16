@@ -13,7 +13,7 @@ export const StartPage = () => {
       <NavLink to="/courses" className="relative py-2 px-4 bg-green-500 text-white font-medium rounded-lg pr-20">
   Посмотреть курсы
   <div className="absolute top-1/2 right-0 transform -translate-y-1/2">
-    <div className="w-6 h-6 bg-white rounded-full flex justify-center items-center text-green-500 font-semibold mr-5"> --\ </div>
+    <div className="w-6 h-6 bg-white rounded-full flex justify-center items-center text-green-500 font-semibold mr-5">  </div>
   </div>
 </NavLink>
 

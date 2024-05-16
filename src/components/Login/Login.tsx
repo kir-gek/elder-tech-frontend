@@ -1,5 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
+
 
 export const Login: React.FC = () => {
   const [phone, setPhone] = useState<string>('');
@@ -19,6 +21,8 @@ export const Login: React.FC = () => {
       if (response.data.token) {
         // Сохраняем токен в localStorage
         localStorage.setItem('authToken', response.data.token);
+         console.log(jwtDecode(response.data.token));
+
         // Устанавливаем сообщение об успешном входе
         setMessage('Авторизация прошла успешно');
       } else {
