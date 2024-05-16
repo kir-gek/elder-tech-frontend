@@ -1,12 +1,16 @@
 import React, { useState, FormEvent } from 'react';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
+import { useDispatch } from 'react-redux';
+import { login } from 'store/authSlice';
 
 
 export const Login: React.FC = () => {
   const [phone, setPhone] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
+
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -21,6 +25,7 @@ export const Login: React.FC = () => {
       if (response.data.token) {
         // Сохраняем токен в localStorage
         localStorage.setItem('authToken', response.data.token);
+        dispatch(login())
          console.log(jwtDecode(response.data.token));
 
         // Устанавливаем сообщение об успешном входе
@@ -33,12 +38,7 @@ export const Login: React.FC = () => {
     }
   };
 
-  const handleLogout = () => {
-    // Удаляем токен из localStorage
-    localStorage.removeItem('authToken');
-    // Сбрасываем сообщение
-    setMessage('');
-  };
+ 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -88,14 +88,7 @@ export const Login: React.FC = () => {
             <p>{message}</p>
           </div>
         )}
-        <div className="mt-4">
-          <button
-            onClick={handleLogout}
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Выйти
-          </button>
-        </div>
+        
       </div>
     </div>
   );
