@@ -1,6 +1,7 @@
 import Photo from "assets/images/home-page-near-title.png";
 import Description from "assets/images/Desciption.svg"
 import { NavLink } from "react-router-dom";
+import axiosInstance from "api/axiosConfig";
 export const StartPage = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -48,7 +49,41 @@ export const StartPage = () => {
         Для ознакомления с основными программами обучения вам необходимо будет
         пройти курс по компьютерной грамотности
       </p>
-      
+      <PostButton />
     </div>
+  );
+};
+
+
+
+
+
+
+
+
+// ЗДЕСЬ ДЛЛЯ ТОГО ЧТОБ ЧЕКАТЬ ЗАПРОСЫ
+const PostButton: React.FC = () => {
+  const handleClick = async () => {
+    const dataCourse = {
+      title: "Введение в веб-разработку",
+      description: "Изучите основы веб-разработки с нуля",
+      difficulty: 2,
+      timeToCompleteMinutes: 240,
+      about: "Этот курс охватывает основы HTML, CSS и JavaScript.",
+      forWho: "Новички в веб-разработке",
+      requirements: "Нет необходимости в предварительном опыте программирования",
+      categories: [1] 
+    };
+
+    try {
+      const otvet = await axiosInstance.post('/courses', dataCourse);
+      console.log('Успешный POST-запрос с ответом:', otvet.data);
+    } catch (ошибка) {
+      console.error('Ошибка при выполнении POST-запроса:', ошибка);
+    }
+  };
+
+  return (
+    <button onClick={handleClick}>Создать курс</button>
   );
 };

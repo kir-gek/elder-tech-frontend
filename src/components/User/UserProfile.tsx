@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserProfile, selectUserProfile, selectUserLoading, selectUserError } from 'store/userSlice';
 import { IRootState } from 'store/root-reducer';
+import { Modal } from '../Modal/Modal';
+import { EditUserProfileForm } from './EditUserProfileForm'; 
 
 export const UserProfile: React.FC = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state: IRootState) => selectUserProfile(state));
   const loading = useSelector((state: IRootState) => selectUserLoading(state));
   const error = useSelector((state: IRootState) => selectUserError(state));
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchUserProfile());
@@ -53,13 +56,18 @@ export const UserProfile: React.FC = () => {
               <span className="font-medium">Дата создания: </span>
               <span>{new Date(profile.created_at).toLocaleDateString()}</span>
             </div>
-            <div>
-              <span className="font-medium">Последний онлайн: </span>
-              <span>{new Date(profile.lastOnline).toLocaleDateString()}</span>
-            </div>
+            <button
+              className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onClick={() => setEditModalOpen(true)}
+            >
+              Редактировать
+            </button>
           </div>
         </div>
       )}
+      <Modal isOpen={isEditModalOpen} onClose={() => setEditModalOpen(false)}>
+        <EditUserProfileForm profile={profile} onClose={() => setEditModalOpen(false)} />
+      </Modal>
     </div>
   );
 };
