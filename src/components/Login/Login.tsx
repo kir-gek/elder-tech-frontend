@@ -1,9 +1,12 @@
 import React, { useState, FormEvent } from 'react';
 import axios from 'axios';
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { login } from 'store/authSlice';
+import { login } from 'store/authSlice'; // Измените путь в соответствии с вашей структурой проекта
 
+interface JwtPayload {
+  id: number;
+}
 
 export const Login: React.FC = () => {
   const [phone, setPhone] = useState<string>('');
@@ -21,24 +24,21 @@ export const Login: React.FC = () => {
         password
       });
 
-      // Проверяем наличие токена в ответе
       if (response.data.token) {
-        // Сохраняем токен в localStorage
-        localStorage.setItem('authToken', response.data.token);
-        dispatch(login())
-         console.log(jwtDecode(response.data.token));
+        const decodedToken = jwtDecode<JwtPayload>(response.data.token);
+        const currentID = decodedToken.id;
 
-        // Устанавливаем сообщение об успешном входе
+        // Диспатчим токен и currentID в Redux
+        dispatch(login({ token: response.data.token, id: currentID }));
+
         setMessage('Авторизация прошла успешно');
       } else {
         setMessage('Ошибка входа: ' + response.data.message);
       }
-    } catch (error) {
+    } catch (error: any) {
       setMessage('Ошибка входа: ' + (error.response?.data?.message || error.message));
     }
   };
-
- 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -88,7 +88,6 @@ export const Login: React.FC = () => {
             <p>{message}</p>
           </div>
         )}
-        
       </div>
     </div>
   );
