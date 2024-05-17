@@ -10,12 +10,20 @@ import { MyStudents } from "components/Teacher/MyStudents/MyStudents";
 import { MyCourses } from "components/Teacher/MyCourses/MyCourses";
 import { UserProfile } from "components/User/UserProfile";
 import { Registration } from "components/Login/Registration";
+import BackGround from "src/assets/images/bavkground.jpg";
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow mt-16">
+      <main
+        className="flex-grow mt-16"
+        style={{
+          backgroundImage: `url(https://img.freepik.com/free-vector/botanical-frame-on-a-beige-background_53876-116816.jpg?w=1380&t=st=1715913473~exp=1715914073~hmac=9de576b4e5524081f9c414337b5bbfcc78d03639d078d7ae70dd11a6a14fa458)`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <Routes>
           <Route path="" element={<StartPage />} />
           <Route path="/login" element={<Login />} />

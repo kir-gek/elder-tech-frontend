@@ -35,7 +35,7 @@ export const MyCourses = () => {
   ));
 
   return (
-    <div className="max-w-lg mx-auto p-6">
+    <div className="max-w-lg mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-xl">
       <div>
         <h3 className="text-xl font-semibold mb-4">Мои курсы</h3>
         {coursesJSX}

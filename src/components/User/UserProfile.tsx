@@ -17,7 +17,8 @@ export const UserProfile: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className="p-4">
+    <div className="max-w-lg mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-xl">
+      
       {loading && <p>Загрузка...</p>}
       {error && <p className="text-red-500">{error}</p>}
       {profile && (

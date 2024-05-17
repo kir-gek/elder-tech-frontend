@@ -61,7 +61,7 @@ export const MyStudents = () => {
   ));
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
+    <div className="max-w-3xl mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-xl" >
       <h3 className="text-2xl font-semibold mb-4">Мои студенты</h3>
       <div className="overflow-x-auto">
         <table className="table-auto w-full">
