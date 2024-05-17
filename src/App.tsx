@@ -10,7 +10,7 @@ import { MyStudents } from "components/Teacher/MyStudents/MyStudents";
 import { MyCourses } from "components/Teacher/MyCourses/MyCourses";
 import { UserProfile } from "components/User/UserProfile";
 import { Registration } from "components/Login/Registration";
-import BackGround from "src/assets/images/bavkground.jpg";
+import { Contact } from "components/Contacts/Contact";
 
 function App() {
   return (
@@ -36,6 +36,7 @@ function App() {
           <Route path="/teacher/my-students" element={<MyStudents />} />
           <Route path="/teacher/my-courses" element={<MyCourses />} />
           <Route path="/user/profile" element={<UserProfile />} />
+          <Route path = "/contacts" element={<Contact />} />
         </Routes>
       </main>
       <Footer />

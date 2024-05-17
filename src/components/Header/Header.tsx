@@ -32,6 +32,9 @@ export const Header: React.FC = () => {
         </>
       )}
       <div>
+        <NavLink to="/contacts" className="text-lg font-medium text-gray-700 hover:text-blue-600">Контакты</NavLink>
+      </div>
+      <div>
         {isLoggedIn ? (
           <button
             onClick={handleLogout}
@@ -49,4 +52,3 @@ export const Header: React.FC = () => {
   );
 };
 
-export default Header;
