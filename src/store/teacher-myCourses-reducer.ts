@@ -1,5 +1,3 @@
-// teacherProfileMyCoursesSlice.ts
-
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IRootState } from "./root-reducer";
 import { CourseModel } from "types/Course";
@@ -25,7 +23,7 @@ let initialState: teacherProfileMyCoursesSliceState = {
     courses: [ {
         id: 1,
         title: 'Основы английского языка',
-        description: 'Научитесб базовым правилам грамматики, лексики и произношения английского языка',
+        description: 'Научитесь базовым правилам грамматики, лексики и произношения английского языка',
         category: 'Языки',
         difficulty: 1,
         rating: 5
@@ -48,9 +46,9 @@ let initialState: teacherProfileMyCoursesSliceState = {
       }],
     formValueName: 'введите название курса',
     formValueDescription: 'введите описание курса',
-    formValueCategory: 'Языки', // Установим начальное значение для категории
-    formValueDifficulty: 0, // Установим начальное значение для сложности
-    formValueRating: 0, // Установим начальное значение для рейтинга
+    formValueCategory: 'Языки',
+    formValueDifficulty: 0,
+    formValueRating: 0,
 }
 
 const teacherProfileMyCoursesSlice = createSlice({
@@ -58,11 +56,11 @@ const teacherProfileMyCoursesSlice = createSlice({
     initialState,
     reducers: {
         changeValueCourseForm(state, action: PayloadAction<ChangeValueCourseFormAction>) {
-                state.formValueName = action.payload.textName;
-                state.formValueDescription = action.payload.textDescription;
-                state.formValueCategory = action.payload.textCategory;
-                state.formValueDifficulty = action.payload.difficulty;
-                state.formValueRating = action.payload.rating;
+            state.formValueName = action.payload.textName;
+            state.formValueDescription = action.payload.textDescription;
+            state.formValueCategory = action.payload.textCategory;
+            state.formValueDifficulty = action.payload.difficulty;
+            state.formValueRating = action.payload.rating;
         },
         addNewCourse(state) {
             const newCourse: CourseModel = {
@@ -79,6 +77,9 @@ const teacherProfileMyCoursesSlice = createSlice({
             state.formValueCategory = 'Языки';
             state.formValueDifficulty = 0;
             state.formValueRating = 0;
+        },
+        deleteCourse(state, action: PayloadAction<number>) {
+            state.courses = state.courses.filter(course => course.id !== action.payload);
         }
     }
 })
@@ -86,9 +87,9 @@ const teacherProfileMyCoursesSlice = createSlice({
 export const getFormValueName = (state: IRootState) => state.teacherMyCourses.formValueName
 export const getCourses = (state: IRootState) => state.teacherMyCourses.courses
 export const getFormValueDescription = (state: IRootState) => state.teacherMyCourses.formValueDescription
-export const getFormValueCategory = (state: IRootState) => state.teacherMyCourses.formValueCategory // Селектор для категории
+export const getFormValueCategory = (state: IRootState) => state.teacherMyCourses.formValueCategory
 export const getFormValueDifficulty = (state: IRootState) => state.teacherMyCourses.formValueDifficulty
 export const getFormValueRating = (state: IRootState) => state.teacherMyCourses.formValueRating
 
 export default teacherProfileMyCoursesSlice.reducer
-export const { changeValueCourseForm, addNewCourse } = teacherProfileMyCoursesSlice.actions
+export const { changeValueCourseForm, addNewCourse, deleteCourse } = teacherProfileMyCoursesSlice.actions
