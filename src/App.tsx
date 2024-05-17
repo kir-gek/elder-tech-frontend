@@ -9,6 +9,7 @@ import { TeacherProfile } from "components/Teacher/Profile/Profile";
 import { MyStudents } from "components/Teacher/MyStudents/MyStudents";
 import { MyCourses } from "components/Teacher/MyCourses/MyCourses";
 import { UserProfile } from "components/User/UserProfile";
+import { Registration } from "components/Login/Registration";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="" element={<StartPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Registration />} />
           <Route
             path="/student/profile"
             element={<StudentProfile studentId={1} />}
@@ -25,7 +27,7 @@ function App() {
           <Route path="/teacher/profile" element={<TeacherProfile />} />
           <Route path="/teacher/my-students" element={<MyStudents />} />
           <Route path="/teacher/my-courses" element={<MyCourses />} />
-          <Route path="/user/profile" element={< UserProfile />} /> 
+          <Route path="/user/profile" element={<UserProfile />} />
         </Routes>
       </main>
       <Footer />
