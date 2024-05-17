@@ -1,5 +1,8 @@
 export interface CourseModel {
     id: number;
     title: string;
-    description: string
+    description: string;
+    category: string;
+    difficulty: number;
+    rating: number;
 }
