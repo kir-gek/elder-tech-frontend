@@ -22,7 +22,30 @@ interface ChangeValueCourseFormAction {
 }
 
 let initialState: teacherProfileMyCoursesSliceState = {
-    courses: [],
+    courses: [ {
+        id: 1,
+        title: 'Основы английского языка',
+        description: 'Научитесб базовым правилам грамматики, лексики и произношения английского языка',
+        category: 'Языки',
+        difficulty: 1,
+        rating: 5
+      },
+      {
+        id: 2,
+        title: 'Введение в когнитивную психологию',
+        description: 'Изучите основные концепции и теории когнитивной психологии, такие как восприятие, память и мышление.',
+        category: 'Психология',
+        difficulty: 2,
+        rating: 4
+      },
+      {
+        id: 3,
+        title: 'Кулинария для начинающих',
+        description: 'Научитесь готовить простые и вкусные блюда, осваивая базовые техники приготовления пищи.',
+        category: 'Готовка',
+        difficulty: 2,
+        rating: 4
+      }],
     formValueName: 'введите название курса',
     formValueDescription: 'введите описание курса',
     formValueCategory: 'Языки', // Установим начальное значение для категории
