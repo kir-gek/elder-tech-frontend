@@ -3,7 +3,7 @@ import axios from 'axios';
 // Создаем экземпляр Axios
 const axiosInstance = axios.create({
     withCredentials: true,
-  baseURL: 'https://45.80.69.116/api/v1',
+  baseURL: 'https://viotrina.ru/api/v1',
 });
 
 // Добавляем интерсептор для добавления токена в заголовки запросов

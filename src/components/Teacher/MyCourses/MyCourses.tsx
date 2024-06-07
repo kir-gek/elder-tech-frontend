@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getCourses, deleteCourse } from "store/teacher-myCourses-reducer";
 import AddCourseModal from "./AddCourseModal";
 
 export const MyCourses = () => {
   const courses = useSelector(getCourses);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -21,6 +23,10 @@ export const MyCourses = () => {
     dispatch(deleteCourse(id));
   };
 
+  const handleNavigateToCourse = (course: any) => {
+    navigate(`/course/${course.id}`, { state: { course } });
+  };
+
   const coursesJSX = courses.map((el) => (
     <CoursesComponent
       key={el.id}
@@ -31,6 +37,7 @@ export const MyCourses = () => {
       difficulty={el.difficulty}
       rating={el.rating}
       onDelete={() => handleDelete(el.id)}
+      onNavigate={() => handleNavigateToCourse(el)}
     />
   ));
 
@@ -64,6 +71,7 @@ interface CoursesComponentProps {
   difficulty: number;
   rating: number;
   onDelete: () => void;
+  onNavigate: () => void;
 }
 
 const CoursesComponent = (props: CoursesComponentProps) => {
@@ -80,6 +88,12 @@ const CoursesComponent = (props: CoursesComponentProps) => {
       <p className="text-gray-700 mb-2">Категория: {props.category}</p>
       <p className="text-gray-700 mb-2">Сложность: {props.difficulty}</p>
       <p className="text-gray-700 mb-2">Рейтинг: {props.rating}</p>
+      <button
+        onClick={props.onNavigate}
+        className="mt-4 bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600 transition duration-300"
+      >
+        Перейти на курс
+      </button>
     </div>
   );
 };

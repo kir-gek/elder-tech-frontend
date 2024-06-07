@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axiosInstance from 'api/axiosConfig'; // Путь к вашему файлу axiosInstance
+import axiosInstance from 'api/axiosConfig'; 
 import { useNavigate } from 'react-router-dom';
 
 export const Registration = () => {

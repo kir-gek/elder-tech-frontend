@@ -11,6 +11,9 @@ import { MyCourses } from "components/Teacher/MyCourses/MyCourses";
 import { UserProfile } from "components/User/UserProfile";
 import { Registration } from "components/Login/Registration";
 import { Contact } from "components/Contacts/Contact";
+import { CoursePage } from "components/Teacher/MyCourses/CoursePage";
+import { CourseDetail } from "components/StartPage/CourseDetail";
+import { Courses } from "components/StartPage/Courses";
 
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
         <Routes>
           <Route path="" element={<StartPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:id" element={<CourseDetail />} />
           <Route path="/register" element={<Registration />} />
           <Route
             path="/student/profile"
@@ -37,6 +42,7 @@ function App() {
           <Route path="/teacher/my-courses" element={<MyCourses />} />
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path = "/contacts" element={<Contact />} />
+          <Route path="/course/:id" element={<CoursePage />} />
         </Routes>
       </main>
       <Footer />

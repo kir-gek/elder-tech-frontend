@@ -2,7 +2,7 @@ import React, { useState, FormEvent } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
-import { login } from "store/authSlice"; // Измените путь в соответствии с вашей структурой проекта
+import { login } from "store/authSlice";
 import { NavLink } from "react-router-dom";
 
 interface JwtPayload {
@@ -21,7 +21,7 @@ export const Login: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "https://45.80.69.116/api/v1/auth/sign-in",
+        "https://viotrina.ru/api/v1/auth/sign-in",
         {
           phone,
           password,
