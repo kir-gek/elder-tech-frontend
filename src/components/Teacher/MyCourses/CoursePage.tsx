@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "api/axiosConfig";
+import { CourseModel } from "types/Course"; // Импорт модели курса
 
 export const CoursePage = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>(); // Используем useParams с типизацией
+  const navigate = useNavigate();
   const [course, setCourse] = useState<CourseModel | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -22,6 +24,15 @@ export const CoursePage = () => {
     fetchCourse();
   }, [id]);
 
+  const handleUnsubscribe = async () => {
+    try {
+      await axiosInstance.post(`/courses/${id}/leave`);
+      navigate('/courses'); // Возвращаемся на страницу курсов после успешной отписки
+    } catch (error) {
+      console.error("Ошибка при отписке от курса:", error);
+    }
+  };
+
   if (loading) {
     return <div className="text-center py-8">Загрузка...</div>;
   }
@@ -39,6 +50,12 @@ export const CoursePage = () => {
       <p className="text-gray-700 mb-2">Для кого: {course.for_who}</p>
       <p className="text-gray-700 mb-2">Автор ID: {course.author_id}</p>
       <p className="text-gray-700 mb-2">Описание: {course.about}</p>
+      <button
+        onClick={handleUnsubscribe}
+        className="mt-4 bg-red-500 text-white font-medium py-2 px-4 rounded-md hover:bg-red-600 transition duration-300"
+      >
+        Отписаться
+      </button>
     </div>
   );
 };
