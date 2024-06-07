@@ -33,16 +33,12 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/:id" element={<CourseDetail />} />
           <Route path="/register" element={<Registration />} />
-          <Route
-            path="/student/profile"
-            element={<StudentProfile studentId={1} />}
-          />
           <Route path="/teacher/profile" element={<TeacherProfile />} />
           <Route path="/teacher/my-students" element={<MyStudents />} />
           <Route path="/teacher/my-courses" element={<MyCourses />} />
+          <Route path="/teacher/my-courses/:id" element={<CoursePage />} />
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path = "/contacts" element={<Contact />} />
-          <Route path="/course/:id" element={<CoursePage />} />
         </Routes>
       </main>
       <Footer />

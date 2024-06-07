@@ -38,14 +38,8 @@ export const CourseDetail: React.FC = () => {
   }, [id]);
 
   const handleJoinCourse = async () => {
-    const currentID = localStorage.getItem('currentID');
-    if (!currentID) {
-      console.error('ID пользователя не найден в локальном хранилище.');
-      return;
-    }
-
     try {
-      await axiosInstance.post(`/courses/${id}/join`, { user_id: parseInt(currentID) });
+      await axiosInstance.post(`/courses/${id}/join`, { course_id: id });
       setIsJoined(true);
       console.log('Вы успешно записались на курс');
     } catch (error) {

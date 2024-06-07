@@ -1,8 +1,15 @@
 export interface CourseModel {
-    id: number;
-    title: string;
-    description: string;
-    category: string;
-    difficulty: number;
-    rating: number;
+    id: number,
+  author_id: number,
+  title: string,
+  description: string,
+  difficulty: number,
+  time_to_complete_hours: number,
+  about: string,
+  for_who: string,
+  created_at: string,
+  updated_at: string,
+  requirements: string,
+  rating: number,
+  progress: number,
 }

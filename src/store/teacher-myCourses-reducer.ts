@@ -1,5 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IRootState } from "./root-reducer";
+import axiosInstance from 'api/axiosConfig'; // Путь к вашему axiosInstance
 import { CourseModel } from "types/Course";
 
 export interface teacherProfileMyCoursesSliceState {
@@ -19,37 +20,29 @@ interface ChangeValueCourseFormAction {
     rating: number;
 }
 
-let initialState: teacherProfileMyCoursesSliceState = {
-    courses: [ {
-        id: 1,
-        title: 'Основы английского языка',
-        description: 'Научитесь базовым правилам грамматики, лексики и произношения английского языка',
-        category: 'Языки',
-        difficulty: 1,
-        rating: 5
-      },
-      {
-        id: 2,
-        title: 'Введение в когнитивную психологию',
-        description: 'Изучите основные концепции и теории когнитивной психологии, такие как восприятие, память и мышление.',
-        category: 'Психология',
-        difficulty: 2,
-        rating: 4
-      },
-      {
-        id: 3,
-        title: 'Кулинария для начинающих',
-        description: 'Научитесь готовить простые и вкусные блюда, осваивая базовые техники приготовления пищи.',
-        category: 'Готовка',
-        difficulty: 2,
-        rating: 4
-      }],
+const initialState: teacherProfileMyCoursesSliceState = {
+    courses: [], // Инициализируем как пустой массив
     formValueName: 'введите название курса',
     formValueDescription: 'введите описание курса',
     formValueCategory: 'Языки',
     formValueDifficulty: 0,
     formValueRating: 0,
-}
+};
+
+// Асинхронное действие для загрузки курсов
+export const fetchUserCourses = createAsyncThunk(
+    'teacherMyCourses/fetchUserCourses',
+    async (_, thunkAPI) => {
+        const userId = localStorage.getItem('currentID');
+        if (!userId) {
+            throw new Error('currentID не найден в localStorage');
+        }
+
+        const response = await axiosInstance.get(`/courses/user/${userId}`);
+        console.log('Fetched user courses:', response.data);
+        return response.data;
+    }
+);
 
 const teacherProfileMyCoursesSlice = createSlice({
     name: 'teacherMyCourses',
@@ -62,34 +55,26 @@ const teacherProfileMyCoursesSlice = createSlice({
             state.formValueDifficulty = action.payload.difficulty;
             state.formValueRating = action.payload.rating;
         },
-        addNewCourse(state) {
-            const newCourse: CourseModel = {
-                id: state.courses.length + 1,
-                title: state.formValueName,
-                description: state.formValueDescription,
-                category: state.formValueCategory,
-                difficulty: state.formValueDifficulty,
-                rating: state.formValueRating,
-            };
-            state.courses.push(newCourse);
-            state.formValueName = 'введите название курса';
-            state.formValueDescription = 'введите описание курса';
-            state.formValueCategory = 'Языки';
-            state.formValueDifficulty = 0;
-            state.formValueRating = 0;
-        },
         deleteCourse(state, action: PayloadAction<number>) {
             state.courses = state.courses.filter(course => course.id !== action.payload);
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchUserCourses.fulfilled, (state, action) => {
+            state.courses = action.payload;
+        });
+        builder.addCase(fetchUserCourses.rejected, (state, action) => {
+            console.error('Ошибка при загрузке курсов пользователя:', action.error);
+        });
     }
-})
+});
 
-export const getFormValueName = (state: IRootState) => state.teacherMyCourses.formValueName
-export const getCourses = (state: IRootState) => state.teacherMyCourses.courses
-export const getFormValueDescription = (state: IRootState) => state.teacherMyCourses.formValueDescription
-export const getFormValueCategory = (state: IRootState) => state.teacherMyCourses.formValueCategory
-export const getFormValueDifficulty = (state: IRootState) => state.teacherMyCourses.formValueDifficulty
-export const getFormValueRating = (state: IRootState) => state.teacherMyCourses.formValueRating
+export const getFormValueName = (state: IRootState) => state.teacherMyCourses.formValueName;
+export const getCourses = (state: IRootState) => state.teacherMyCourses.courses || [];
+export const getFormValueDescription = (state: IRootState) => state.teacherMyCourses.formValueDescription;
+export const getFormValueCategory = (state: IRootState) => state.teacherMyCourses.formValueCategory;
+export const getFormValueDifficulty = (state: IRootState) => state.teacherMyCourses.formValueDifficulty;
+export const getFormValueRating = (state: IRootState) => state.teacherMyCourses.formValueRating;
 
-export default teacherProfileMyCoursesSlice.reducer
-export const { changeValueCourseForm, addNewCourse, deleteCourse } = teacherProfileMyCoursesSlice.actions
+export default teacherProfileMyCoursesSlice.reducer;
+export const { changeValueCourseForm, deleteCourse } = teacherProfileMyCoursesSlice.actions;

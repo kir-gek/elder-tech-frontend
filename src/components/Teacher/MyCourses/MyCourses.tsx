@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getCourses, fetchUserCourses } from "store/teacher-myCourses-reducer";
 import { useNavigate } from "react-router-dom";
-import { getCourses, deleteCourse } from "store/teacher-myCourses-reducer";
-import AddCourseModal from "./AddCourseModal";
+// import AddCourseModal from "./AddCourseModal";
 
 export const MyCourses = () => {
-  const courses = useSelector(getCourses);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
+  useEffect(() => {
+    dispatch(fetchUserCourses()); // Выполняем действие при загрузке компонента
+  }, [dispatch]);
+
+  const courses = useSelector(getCourses);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -19,27 +23,19 @@ export const MyCourses = () => {
     setIsModalOpen(false);
   };
 
-  const handleDelete = (id: number) => {
-    dispatch(deleteCourse(id));
-  };
-
-  const handleNavigateToCourse = (course: any) => {
-    navigate(`/course/${course.id}`, { state: { course } });
-  };
-
-  const coursesJSX = courses.map((el) => (
-    <CoursesComponent
+  const coursesJSX = Array.isArray(courses.courses) ? courses.courses.map((el) => (
+    <CoursesComponent      
       key={el.id}
       id={el.id}
+      author_id={el.author_id}
       title={el.title}
       description={el.description}
-      category={el.category}
       difficulty={el.difficulty}
-      rating={el.rating}
-      onDelete={() => handleDelete(el.id)}
-      onNavigate={() => handleNavigateToCourse(el)}
+      time_to_complete_hours={el.time_to_complete_hours}
+      about={el.about}
+      for_who={el.for_who}      
     />
-  ));
+  )) : <p>Курсы не найдены</p>;
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-xl">
@@ -65,34 +61,35 @@ export const MyCourses = () => {
 
 interface CoursesComponentProps {
   id: number;
-  title: string;
+  about: string;
   description: string;
-  category: string;
   difficulty: number;
-  rating: number;
-  onDelete: () => void;
-  onNavigate: () => void;
+  for_who: string;
+  title: string;
+  time_to_complete_hours: number;
+  author_id: number;
 }
 
 const CoursesComponent = (props: CoursesComponentProps) => {
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate(`/teacher/my-courses/${props.id}`);
+  };
+
   return (
-    <div className="relative bg-white shadow-md rounded-lg p-4 mb-4">
-      <button
-        onClick={props.onDelete}
-        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-      >
-        &#10060;
-      </button>
+    <div className="relative bg-white shadow-md rounded-lg p-4 mb-4">     
       <h4 className="text-xl font-semibold mb-2">Курс: {props.title}</h4>
       <p className="text-gray-700 mb-2">Описание курса: {props.description}</p>
-      <p className="text-gray-700 mb-2">Категория: {props.category}</p>
       <p className="text-gray-700 mb-2">Сложность: {props.difficulty}</p>
-      <p className="text-gray-700 mb-2">Рейтинг: {props.rating}</p>
+      <p className="text-gray-700 mb-2">Время на завершение: {props.time_to_complete_hours} часов</p>
+      <p className="text-gray-700 mb-2">Для кого: {props.for_who}</p>
+      <p className="text-gray-700 mb-2">Автор ID: {props.author_id}</p>
+      <p className="text-gray-700 mb-2">Описание: {props.about}</p>
       <button
-        onClick={props.onNavigate}
-        className="mt-4 bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600 transition duration-300"
+        onClick={handleNavigate}
+        className="mt-4 bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
       >
-        Перейти на курс
+        Перейти в курс
       </button>
     </div>
   );
