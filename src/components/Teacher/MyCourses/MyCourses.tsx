@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourses, fetchUserCourses } from "store/teacher-myCourses-reducer";
 import { useNavigate } from "react-router-dom";
+import { selectUserName, selectUserPatronymic } from "store/userSlice";
+
 // import AddCourseModal from "./AddCourseModal";
 
 export const MyCourses = () => {
   const dispatch = useDispatch();
   
+
+  const userName = useSelector(selectUserName);
+  const userPatronymic = useSelector(selectUserPatronymic);
+
   useEffect(() => {
     dispatch(fetchUserCourses()); // Выполняем действие при загрузке компонента
   }, [dispatch]);
@@ -39,8 +45,16 @@ export const MyCourses = () => {
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-xl">
+       <div>
+          <h3 className="text-4xl font-semibold text-center mb-6 text-gray-800">
+            Здравствуйте, {userName} {userPatronymic}!
+          </h3>
+          <p className="text-lg font-semibold text-center mb-8 text-gray-700">
+            Сегодня отличный день, чтобы продолжить обучение
+          </p>
+        </div>
       <div>
-        <h3 className="text-xl font-semibold mb-4">Мои курсы</h3>
+        <h3 className="text-xl font-semibold mb-4">Ваши курсы</h3>
         {coursesJSX}
       </div>
       <div className="mt-8">

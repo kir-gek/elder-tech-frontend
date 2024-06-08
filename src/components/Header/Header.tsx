@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
             Выйти
           </button>
         ) : (
-          <button className="bg-green-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200">
+          <button className="bg-green-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200">
             <NavLink to="/login">Войти в аккаунт</NavLink>
           </button>
         )}

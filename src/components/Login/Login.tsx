@@ -3,7 +3,8 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { login } from "store/authSlice";
-import { NavLink } from "react-router-dom";
+import {NavLink, useNavigate } from "react-router-dom";
+
 
 interface JwtPayload {
   id: number;
@@ -15,6 +16,8 @@ export const Login: React.FC = () => {
   const [message, setMessage] = useState<string>("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -36,6 +39,9 @@ export const Login: React.FC = () => {
         dispatch(login({ token: response.data.token, id: currentID }));
 
         setMessage("Авторизация прошла успешно");
+        setTimeout(() => {
+          navigate("/user/profile"); // Перенаправление на страницу профиля
+        }, 1000);
       } else {
         setMessage("Ошибка входа: " + response.data.message);
       }
@@ -47,7 +53,7 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-yellow-200 to-green-300">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4">
           Войти в существующий аккаунт

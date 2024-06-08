@@ -1,51 +1,58 @@
-import { useState } from 'react';
-import axiosInstance from 'api/axiosConfig'; 
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import axiosInstance from "api/axiosConfig";
+import { useNavigate } from "react-router-dom";
 
 export const Registration = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    surname: '',
-    phone: '',
-    email: '',
-    password: ''
+    name: "",
+    surname: "",
+    phone: "",
+    email: "",
+    password: "",
   });
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({
       ...formData,
-      [id]: value
+      [id]: value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post('/auth/sign-up', formData);
+      const response = await axiosInstance.post("/auth/sign-up", formData);
       if (response.status === 200 || response.status === 201) {
-        setSuccessMessage('Регистрация прошла успешно!');
-        setErrorMessage('');
+        setSuccessMessage("Регистрация прошла успешно!");
+        setErrorMessage("");
         setTimeout(() => {
-          navigate('/login'); // Перенаправление на страницу логина или другую
+          navigate("/login"); // Перенаправление на страницу логина или другую
         }, 3000);
       }
     } catch (error) {
-      setSuccessMessage('');
-      setErrorMessage('Произошла ошибка при регистрации. Пожалуйста, попробуйте снова.');
+      setSuccessMessage("");
+      setErrorMessage(
+        "Произошла ошибка при регистрации. Пожалуйста, попробуйте снова."
+      );
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-yellow-200 to-green-300">
       <div className="max-w-md w-full p-6 bg-white shadow-md rounded-lg">
         <h2 className="text-2xl font-semibold mb-4">Регистрация</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Имя</label>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Имя
+            </label>
             <input
               type="text"
               id="name"
@@ -56,7 +63,12 @@ export const Registration = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="surname" className="block text-sm font-medium text-gray-700">Фамилия</label>
+            <label
+              htmlFor="surname"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Фамилия
+            </label>
             <input
               type="text"
               id="surname"
@@ -67,7 +79,12 @@ export const Registration = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Телефон</label>
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Телефон
+            </label>
             <input
               type="text"
               id="phone"
@@ -78,7 +95,12 @@ export const Registration = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -89,7 +111,12 @@ export const Registration = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Пароль</label>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Пароль
+            </label>
             <input
               type="password"
               id="password"
@@ -114,12 +141,9 @@ export const Registration = () => {
           </div>
         )}
         {errorMessage && (
-          <div className="mt-4 text-red-500 font-medium">
-            {errorMessage}
-          </div>
+          <div className="mt-4 text-red-500 font-medium">{errorMessage}</div>
         )}
       </div>
     </div>
   );
 };
-

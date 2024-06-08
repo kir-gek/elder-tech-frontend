@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import axiosInstance from 'api/axiosConfig';
 import { IRootState } from "./root-reducer";
 import { selectCurrentID } from "./authSlice";
@@ -69,9 +69,19 @@ const userSlice = createSlice({
 
 export const { updateUserProfileLocally } = userSlice.actions;
 
-
+// Добавляем селекторы selectUserName и selectUserPatronymic
 export const selectUserProfile = (state: IRootState) => state.user.profile;
 export const selectUserLoading = (state: IRootState) => state.user.loading;
 export const selectUserError = (state: IRootState) => state.user.error;
+
+export const selectUserName = createSelector(
+    selectUserProfile,
+    (profile) => profile?.name || ""
+);
+
+export const selectUserPatronymic = createSelector(
+    selectUserProfile,
+    (profile) => profile?.patronymic || ""
+);
 
 export default userSlice.reducer;
