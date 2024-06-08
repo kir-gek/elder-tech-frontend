@@ -2,7 +2,9 @@ export interface UserModel {
     id: number;
     name: string;
     surname: string;
-    secondName: string;
+    patronymic: string;
     age: number;
-    isMan: boolean;
+    gender: number;
+    phone: string;
+    email: string;
 }

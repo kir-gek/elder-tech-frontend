@@ -1,8 +1,8 @@
-// components/EditUserProfileForm.tsx
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import axiosInstance from 'api/axiosConfig';
 import { UserModel } from 'types/User';
-import { updateUserProfileLocally } from 'store/userSlice';
+import { useDispatch } from 'react-redux';
+import { fetchUserProfile } from 'store/userSlice';
 
 interface EditUserProfileFormProps {
   profile: UserModel;
@@ -11,6 +11,7 @@ interface EditUserProfileFormProps {
 
 export const EditUserProfileForm: React.FC<EditUserProfileFormProps> = ({ profile, onClose }) => {
   const [formData, setFormData] = useState<UserModel>(profile);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -21,10 +22,37 @@ export const EditUserProfileForm: React.FC<EditUserProfileFormProps> = ({ profil
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(updateUserProfileLocally(formData)); 
-    onClose();
+    setLoading(true);
+
+    const userId = localStorage.getItem('currentID');
+
+    if (!userId) {
+      console.error('User ID is not available in localStorage');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await axiosInstance.patch(`/users/${userId}`, {
+        name: formData.name,
+        surname: formData.surname,
+        patronymic: formData.patronymic,
+        age: formData.age,
+        gender: formData.gender,
+        phone: formData.phone,
+        email: formData.email
+      });
+
+      dispatch(fetchUserProfile()); // Обновить профиль пользователя
+      onClose();
+    } catch (error) {
+      console.error('Ошибка при обновлении профиля:', error);
+      // Здесь можно добавить обработку ошибок, например, показать сообщение пользователю
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -115,8 +143,9 @@ export const EditUserProfileForm: React.FC<EditUserProfileFormProps> = ({ profil
         <button
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          disabled={loading}
         >
-          Сохранить
+          {loading ? 'Сохранение...' : 'Сохранить'}
         </button>
       </div>
     </form>
