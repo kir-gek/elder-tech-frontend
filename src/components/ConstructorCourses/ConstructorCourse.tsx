@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from 'api/axiosConfig';
 
 interface CourseBlock {
@@ -36,6 +37,7 @@ export const ConstructorCourse: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -93,7 +95,7 @@ export const ConstructorCourse: React.FC = () => {
                 <p><span className="font-medium">Прогресс:</span> {course.progress}%</p>
                 <p><span className="font-medium">Создан:</span> {new Date(course.created_at).toLocaleDateString()}</p>
                 <p><span className="font-medium">Обновлен:</span> {new Date(course.updated_at).toLocaleDateString()}</p>
-                <div>
+                {/* <div>
                   <h3 className="text-xl font-semibold mb-2">Блоки курса:</h3>
                   {course.course_blocks && course.course_blocks.length > 0 ? (
                     course.course_blocks.map(block => (
@@ -105,7 +107,13 @@ export const ConstructorCourse: React.FC = () => {
                   ) : (
                     <p className="text-gray-500">Блоки курса еще не добавлены</p>
                   )}
-                </div>
+                </div> */}
+                <button
+                  onClick={() => navigate(`/constructor/courses/${course.id}`)}
+                  className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
+                >
+                  Перейти в курс
+                </button>
               </div>
             </div>
           ))}

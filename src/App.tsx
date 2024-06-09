@@ -16,6 +16,7 @@ import { CourseDetail } from "components/StartPage/CourseDetail";
 import { Courses } from "components/StartPage/Courses";
 import { Test } from "components/Test/Test";
 import { ConstructorCourse } from "components/ConstructorCourses/ConstructorCourse";
+import { ConstructorBlock } from "components/ConstructorCourses/ConstructorBlock";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path = "/contacts" element={<Contact />} />
           <Route path="/constructor/courses" element={<ConstructorCourse />} />
+          <Route path="/constructor/courses/:id" element={<ConstructorBlock />} />
           <Route path="/test" element={<Test />} />
         </Routes>
       </main>
