@@ -84,7 +84,7 @@ interface CoursesComponentProps {
 const CoursesComponent = (props: CoursesComponentProps) => {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate(`/teacher/my-courses/${props.id}`);
+    navigate(`/my-courses/${props.id}`);
   };
 
   return (

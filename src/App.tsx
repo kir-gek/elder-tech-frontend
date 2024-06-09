@@ -16,6 +16,7 @@ import { ConstructorCourse } from "components/ConstructorCourses/ConstructorCour
 import { ConstructorBlock } from "components/ConstructorCourses/ConstructorBlock/ConstructorBlock";
 import { CreateNewCourse } from "components/ConstructorCourses/CreateNewCourse";
 import { ConstructorLessons } from "components/ConstructorCourses/ConstructorLessons/ConstrucrorLessons";
+import { Lessons } from "components/MyCourses/Lessons/Lessons";
 
 function App() {
   return (
@@ -35,8 +36,9 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/:id" element={<CourseDetail />} />
           <Route path="/register" element={<Registration />} />
-          <Route path="/teacher/my-courses" element={<MyCourses />} />
-          <Route path="/teacher/my-courses/:id" element={<CoursePage />} />
+          <Route path="/my-courses" element={<MyCourses />} />
+          <Route path="/my-courses/:id" element={<CoursePage />} />
+          <Route path="/my-courses/block/:id" element={<Lessons />} />
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path = "/contacts" element={<Contact />} />
           <Route path="/constructor/courses" element={<ConstructorCourse />} />

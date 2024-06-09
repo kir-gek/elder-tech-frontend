@@ -23,7 +23,7 @@ export const Header: React.FC = () => {
             <NavLink to="/constructor/courses" className="text-lg font-medium text-gray-700 hover:text-blue-600">Конструктор курсов</NavLink>
           </div>
           <div>
-            <NavLink to="/teacher/my-courses" className="text-lg font-medium text-gray-700 hover:text-blue-600">Мои курсы</NavLink>
+            <NavLink to="/my-courses" className="text-lg font-medium text-gray-700 hover:text-blue-600">Мои курсы</NavLink>
           </div>
           <div>
             <NavLink to="/user/profile" className="text-lg font-medium text-gray-700 hover:text-blue-600">Профиль</NavLink>
