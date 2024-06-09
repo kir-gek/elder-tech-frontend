@@ -15,6 +15,7 @@ import { CoursePage } from "components/Teacher/MyCourses/CoursePage";
 import { CourseDetail } from "components/StartPage/CourseDetail";
 import { Courses } from "components/StartPage/Courses";
 import { Test } from "components/Test/Test";
+import { ConstructorCourse } from "components/ConstructorCourses/ConstructorCourse";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/teacher/my-courses/:id" element={<CoursePage />} />
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path = "/contacts" element={<Contact />} />
+          <Route path="/constructor/courses" element={<ConstructorCourse />} />
           <Route path="/test" element={<Test />} />
         </Routes>
       </main>

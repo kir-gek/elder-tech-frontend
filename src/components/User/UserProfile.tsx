@@ -5,7 +5,7 @@ import { IRootState } from 'store/root-reducer';
 import { Modal } from '../Modal/Modal';
 import { EditUserProfileForm } from './EditUserProfileForm';
 import axiosInstance from 'api/axiosConfig';
-import {Preloader} from '../common/Preloader';
+import { Preloader } from '../common/Preloader';
 
 export const UserProfile: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ export const UserProfile: React.FC = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isAvatarEditVisible, setAvatarEditVisible] = useState(false);
 
   useEffect(() => {
     dispatch(fetchUserProfile());
@@ -66,6 +67,7 @@ export const UserProfile: React.FC = () => {
       console.log('Response:', response.data);
       setSelectedFile(null);
       fetchAvatar(profile?.image_id!);
+      setAvatarEditVisible(false);
     } catch (error) {
       console.error('Ошибка при загрузке аватарки:', error);
     }
@@ -89,13 +91,24 @@ export const UserProfile: React.FC = () => {
             ) : (
               <Preloader />
             )}
-            <input type="file" onChange={handleFileChange} className="mb-2" />
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded text-sm focus:outline-none focus:shadow-outline"
-              onClick={handleAvatarUpload}
-            >
-              Изменить аватар
-            </button>
+            {isAvatarEditVisible ? (
+              <div className="flex flex-col items-center">
+                <input type="file" onChange={handleFileChange} className="mb-2" />
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded text-sm focus:outline-none focus:shadow-outline"
+                  onClick={handleAvatarUpload}
+                >
+                  Загрузить аватар
+                </button>
+              </div>
+            ) : (
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded text-sm focus:outline-none focus:shadow-outline"
+                onClick={() => setAvatarEditVisible(true)}
+              >
+                Изменить аватар
+              </button>
+            )}
           </div>
           <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
             <h1 className="text-2xl font-bold mb-4">Профиль пользователя</h1>
@@ -148,4 +161,3 @@ export const UserProfile: React.FC = () => {
     </div>
   );
 };
-
