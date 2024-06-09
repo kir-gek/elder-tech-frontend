@@ -77,6 +77,12 @@ export const ConstructorCourse: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-xl">
       <h1 className="text-3xl font-bold mb-6">Ваши авторские курсы</h1>
+      <button
+        onClick={() => navigate('/constructor/create-course')}
+        className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200 mb-6"
+      >
+        Создать новый курс
+      </button>
       {courses.length === 0 ? (
         <p>У вас еще нет созданных курсов.</p>
       ) : (
@@ -91,23 +97,8 @@ export const ConstructorCourse: React.FC = () => {
                 <p><span className="font-medium">О курсе:</span> {course.about}</p>
                 <p><span className="font-medium">Для кого:</span> {course.for_who}</p>
                 <p><span className="font-medium">Требования:</span> {course.requirements}</p>
-                <p><span className="font-medium">Рейтинг:</span> {course.rating}</p>
-                <p><span className="font-medium">Прогресс:</span> {course.progress}%</p>
                 <p><span className="font-medium">Создан:</span> {new Date(course.created_at).toLocaleDateString()}</p>
                 <p><span className="font-medium">Обновлен:</span> {new Date(course.updated_at).toLocaleDateString()}</p>
-                {/* <div>
-                  <h3 className="text-xl font-semibold mb-2">Блоки курса:</h3>
-                  {course.course_blocks && course.course_blocks.length > 0 ? (
-                    course.course_blocks.map(block => (
-                      <div key={block.id} className="border-t border-gray-200 pt-2 mt-2">
-                        <h4 className="font-medium">{block.title}</h4>
-                        <p>{block.description}</p>
-                      </div>
-                    ))
-                  ) : (
-                    <p className="text-gray-500">Блоки курса еще не добавлены</p>
-                  )}
-                </div> */}
                 <button
                   onClick={() => navigate(`/constructor/courses/${course.id}`)}
                   className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
