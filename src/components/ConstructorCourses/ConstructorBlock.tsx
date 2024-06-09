@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axiosInstance from "api/axiosConfig";
 import { CourseModel } from "types/Course";
+import { MyStudentsOnCourse } from "./MyStudentsOnCourse";
 
 interface Block {
   id: number;
@@ -30,6 +31,8 @@ export const ConstructorBlock: React.FC = () => {
   const [deleteBlockId, setDeleteBlockId] = useState<number | null>(null);
   const [showConfirmationModal, setShowConfirmationModal] =
     useState<boolean>(false);
+const [showStudentsModal, setShowStudentsModal] = useState<boolean>(false);
+
 
   useEffect(() => {
     const fetchBlocks = async () => {
@@ -118,6 +121,14 @@ export const ConstructorBlock: React.FC = () => {
       >
         {showForm ? "Закрыть форму" : "Добавить блок"}
       </button>
+      
+      <button
+        onClick={() => setShowStudentsModal(true)}
+        className="bg-purple-500 text-white py-2 px-4 rounded-lg hover:bg-purple-600 transition duration-200 mb-6 ml-4"
+      >
+        Посмотреть моих учеников
+      </button>
+
       {showForm && (
         <form onSubmit={handleSubmit} className="mb-6">
           <div className="mb-4">
@@ -166,6 +177,7 @@ export const ConstructorBlock: React.FC = () => {
           </button>
         </form>
       )}
+      
       {blocks.length === 0 ? (
         <p>Блоки курса еще не добавлены</p>
       ) : (
@@ -220,6 +232,12 @@ export const ConstructorBlock: React.FC = () => {
             </div>
           </div>
         </div>
+      )}
+      {showStudentsModal && (
+        <MyStudentsOnCourse
+          courseId={id}
+          onClose={() => setShowStudentsModal(false)}
+        />
       )}
     </div>
   );

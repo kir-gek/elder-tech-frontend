@@ -76,7 +76,7 @@ export const ConstructorCourse: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-xl">
-      <h1 className="text-3xl font-bold mb-6">Ваши курсы</h1>
+      <h1 className="text-3xl font-bold mb-6">Ваши авторские курсы</h1>
       {courses.length === 0 ? (
         <p>У вас еще нет созданных курсов.</p>
       ) : (
