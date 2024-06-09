@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourses, fetchUserCourses } from "store/teacher-myCourses-reducer";
+import { getCourses, fetchUserCourses } from "store/myCourses-reducer";
 import { useNavigate } from "react-router-dom";
 import { selectUserName, selectUserPatronymic } from "store/userSlice";
 

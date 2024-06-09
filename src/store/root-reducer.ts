@@ -1,11 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import teacherMyCourses from "./teacher-myCourses-reducer";
+import myCourses from "./myCourses-reducer";
 import auth from "./authSlice";
 import user from "./userSlice"
 
 
 export const rootReducer = combineReducers({    
-    teacherMyCourses,
+    myCourses,
     auth,
     user
 });
