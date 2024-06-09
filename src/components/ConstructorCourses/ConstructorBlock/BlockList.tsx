@@ -1,6 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+
+interface Block {
+    id: number;
+    course_id: number;
+    number: number;
+    title: string;
+    description: string;
+  }
+  
 interface BlockListProps {
   blocks: Block[];
   onDeleteClick: (blockId: number) => void;

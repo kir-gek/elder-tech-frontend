@@ -20,10 +20,9 @@ interface BlocksResponse {
 }
 
 export const ConstructorBlock: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string  }>();
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState<boolean>(false);
   const [courseTitle, setCourseTitle] = useState<string>(""); 
   const [deleteBlockId, setDeleteBlockId] = useState<number | null>(null);
@@ -43,7 +42,6 @@ export const ConstructorBlock: React.FC = () => {
         setBlocks(response.data.blocks);
         setLoading(false);
       } catch (error) {
-        setError("Ошибка при загрузке блоков курса");
         setLoading(false);
       }
     };
@@ -60,7 +58,6 @@ export const ConstructorBlock: React.FC = () => {
       setBlocks([...blocks, response.data]);
       setShowForm(false);
     } catch (error) {
-      setError("Ошибка при добавлении блока");
       console.error(error);
     }
   };
@@ -77,11 +74,18 @@ export const ConstructorBlock: React.FC = () => {
         setBlocks(blocks.filter((block) => block.id !== deleteBlockId));
         setShowConfirmationModal(false);
       } catch (error) {
-        setError("Ошибка при удалении блока");
         console.error(error);
       }
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="w-8 h-8 border-4 border-t-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-xl">
@@ -119,7 +123,7 @@ export const ConstructorBlock: React.FC = () => {
 
       {showStudentsModal && (
         <MyStudentsOnCourse
-          courseId={id}
+          courseId={id ? parseInt(id) : 0}
           onClose={() => setShowStudentsModal(false)}
         />
       )}

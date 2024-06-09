@@ -6,7 +6,7 @@ export const CreateNewCourse: React.FC = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    difficulty: 0,
+    difficulty: '',
     timeToCompleteMinutes: '',
     about: '',
     forWho: '',

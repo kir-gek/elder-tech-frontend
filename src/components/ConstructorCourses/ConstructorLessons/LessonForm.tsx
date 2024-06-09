@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 
+interface Lesson {
+  id: number;
+  course_block_id: number;
+  number: number;
+  title: string;
+  description: string;
+}
+
 interface LessonFormProps {
   onSubmit: (lesson: Omit<Lesson, "id" | "course_block_id">) => void;
 }

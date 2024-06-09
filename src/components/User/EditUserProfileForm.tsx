@@ -3,16 +3,17 @@ import axiosInstance from 'api/axiosConfig';
 import { UserModel } from 'types/User';
 import { useDispatch } from 'react-redux';
 import { fetchUserProfile } from 'store/userSlice';
+import { AppDispatch } from 'store/store';
 
 interface EditUserProfileFormProps {
-  profile: UserModel;
+  profile: any;
   onClose: () => void;
 }
 
 export const EditUserProfileForm: React.FC<EditUserProfileFormProps> = ({ profile, onClose }) => {
   const [formData, setFormData] = useState<UserModel>(profile);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

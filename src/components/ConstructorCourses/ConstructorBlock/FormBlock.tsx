@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+interface Block {
+    id: number;
+    course_id: number;
+    number: number;
+    title: string;
+    description: string;
+  }
 
 interface FormBlockProps {
   onSubmit: (newBlock: Omit<Block, "id" | "course_id">) => void;

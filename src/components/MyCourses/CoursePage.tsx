@@ -66,7 +66,14 @@ export const CoursePage = () => {
       return newCompletedBlocks;
     });
   };
-
+  
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="w-8 h-8 border-4 border-t-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
   return (
     <div className="max-w-lg mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-xl">
       <h1 className="text-2xl font-semibold mb-4">Курс: {course?.title}</h1>

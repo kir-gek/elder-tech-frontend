@@ -6,9 +6,10 @@ import { Modal } from '../Modal/Modal';
 import { EditUserProfileForm } from './EditUserProfileForm';
 import axiosInstance from 'api/axiosConfig';
 import { Preloader } from '../common/Preloader';
+import { AppDispatch } from 'store/store';
 
 export const UserProfile: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const profile = useSelector((state: IRootState) => selectUserProfile(state));
   const loading = useSelector((state: IRootState) => selectUserLoading(state));
   const error = useSelector((state: IRootState) => selectUserError(state));
@@ -23,7 +24,7 @@ export const UserProfile: React.FC = () => {
 
   useEffect(() => {
     if (profile?.image_id) {
-      fetchAvatar(profile.image_id);
+      fetchAvatar(profile.image_id.toString());
     }
   }, [profile]);
 
@@ -66,7 +67,7 @@ export const UserProfile: React.FC = () => {
       });
       console.log('Response:', response.data);
       setSelectedFile(null);
-      fetchAvatar(profile?.image_id!);
+      fetchAvatar(profile?.image_id.toString()!);
       setAvatarEditVisible(false);
     } catch (error) {
       console.error('Ошибка при загрузке аватарки:', error);

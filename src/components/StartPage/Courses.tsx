@@ -27,7 +27,7 @@ export const Courses: React.FC = () => {
           );
           coursesData.push(response.data);
           courseId += 1;
-        } catch (error) {
+        } catch (error:any) {
           if (error.response && error.response.status === 404) {
             console.log(`Курс с ID ${courseId} не найден (404).`);
             break;

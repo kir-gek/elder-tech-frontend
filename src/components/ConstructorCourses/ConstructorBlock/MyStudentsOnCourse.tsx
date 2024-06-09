@@ -18,6 +18,7 @@ interface Member {
 
 interface MyStudentsOnCourseProps {
   courseId: number;
+  onClose: () => void;
 }
 
 export const MyStudentsOnCourse: React.FC<MyStudentsOnCourseProps> = ({ courseId }) => {
@@ -88,14 +89,16 @@ export const MyStudentsOnCourse: React.FC<MyStudentsOnCourseProps> = ({ courseId
   );  
 };
 
-
+interface AvatarProps {
+  imageId: number;
+}
 
 const Avatar: React.FC<AvatarProps> = ({ imageId }) => {
     const [avatarUrl, setAvatarUrl] = useState<string>('');
   
     useEffect(() => {
         if (imageId) {
-            fetchAvatar(imageId);
+            fetchAvatar(imageId.toString());
           }
         }, [imageId]);
     

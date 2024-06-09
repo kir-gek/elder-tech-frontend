@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourses, fetchUserCourses } from "store/myCourses-reducer";
 import { useNavigate } from "react-router-dom";
 import { selectUserName, selectUserPatronymic } from "store/userSlice";
 import { Disclosure } from '@headlessui/react';
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
+import { AppDispatch } from "store/store";
 
 // import AddCourseModal from "./AddCourseModal";
 
 export const MyCourses = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   
 
   const userName = useSelector(selectUserName);
