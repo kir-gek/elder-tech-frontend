@@ -19,14 +19,9 @@ export const MyCourses = () => {
 
   const courses = useSelector(getCourses);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate('/courses');
   };
 
   const coursesJSX = Array.isArray(courses.courses) ? courses.courses.map((el) => (
@@ -58,17 +53,17 @@ export const MyCourses = () => {
         {coursesJSX}
       </div>
       <div className="mt-8">
-        <h3 className="text-xl font-semibold mb-4">Добавление курса</h3>
+        <h3 className="text-xl font-semibold mb-4">Посмотрите новые курсы в галерее курсов</h3>
         <div>
           <button
-            onClick={openModal}
             className="block w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+            onClick={handleNavigate}
           >
-            Добавить курс
+            Перейти в галерию курсов
           </button>
         </div>
       </div>
-      {isModalOpen && <AddCourseModal onClose={closeModal} />}
+      
     </div>
   );
 };

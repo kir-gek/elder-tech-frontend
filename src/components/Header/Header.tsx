@@ -17,7 +17,6 @@ export const Header: React.FC = () => {
     <div className="fixed top-0 left-0 right-0 z-50 bg-white flex justify-around items-center h-16 shadow-md">
       <img src={Logo} alt="Логотип" className="h-full" />
       <NavLink to="/" className="text-2xl font-bold text-emerald-800">Elder<span className="text-black">Tech</span></NavLink>
-      <span className="text-lg font-medium text-gray-700">Версия для слабовидящих</span>
       {isLoggedIn && (
         <>
           <div>
