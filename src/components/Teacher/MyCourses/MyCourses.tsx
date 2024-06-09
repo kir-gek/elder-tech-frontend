@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCourses, fetchUserCourses } from "store/myCourses-reducer";
 import { useNavigate } from "react-router-dom";
 import { selectUserName, selectUserPatronymic } from "store/userSlice";
+import { Disclosure } from '@headlessui/react';
+import { ChevronUpIcon } from '@heroicons/react/24/solid';
 
 // import AddCourseModal from "./AddCourseModal";
 
@@ -88,12 +90,30 @@ const CoursesComponent = (props: CoursesComponentProps) => {
   return (
     <div className="relative bg-white shadow-md rounded-lg p-4 mb-4">     
       <h4 className="text-xl font-semibold mb-2">Курс: {props.title}</h4>
-      <p className="text-gray-700 mb-2">Описание курса: {props.description}</p>
-      <p className="text-gray-700 mb-2">Сложность: {props.difficulty}</p>
-      <p className="text-gray-700 mb-2">Время на завершение: {props.time_to_complete_hours} часов</p>
-      <p className="text-gray-700 mb-2">Для кого: {props.for_who}</p>
-      <p className="text-gray-700 mb-2">Автор ID: {props.author_id}</p>
-      <p className="text-gray-700 mb-2">Описание: {props.about}</p>
+      <p className="text-gray-700 mb-4">Описание курса: {props.description}</p>
+      
+      <div className="w-full max-w-md p-2 mx-auto bg-white rounded-2xl">
+        <Disclosure>
+          {({ open }) => (
+            <>
+              <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <span>Детали курса</span>
+                <ChevronUpIcon
+                  className={`${open ? 'transform rotate-180' : ''} w-5 h-5 text-purple-500`}
+                />
+              </Disclosure.Button>
+              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                <p className="mb-2"><span className="font-medium">Сложность:</span> {props.difficulty}</p>
+                <p className="mb-2"><span className="font-medium">Время на завершение:</span> {props.time_to_complete_hours} минут</p>
+                <p className="mb-2"><span className="font-medium">Для кого:</span> {props.for_who}</p>
+                <p className="mb-2"><span className="font-medium">Автор ID:</span> {props.author_id}</p>
+                <p className="mb-2"><span className="font-medium">Описание:</span> {props.about}</p>
+              </Disclosure.Panel>
+            </>
+          )}
+        </Disclosure>
+      </div>
+
       <button
         onClick={handleNavigate}
         className="mt-4 bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"

@@ -89,7 +89,7 @@ export const CourseDetail: React.FC = () => {
           <strong>Сложность:</strong> {course.difficulty}
         </p>
         <p className="text-gray-700 mb-4">
-          <strong>Время на прохождение (часов):</strong>{" "}
+          <strong>Время на прохождение (минут):</strong>{" "}
           {course.time_to_complete_hours}
         </p>
         <div className="mb-4">
