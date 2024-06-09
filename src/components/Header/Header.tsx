@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
       {isLoggedIn && (
         <>
           <div>
-            <NavLink to="/teacher/my-students" className="text-lg font-medium text-gray-700 hover:text-blue-600">Мои студенты</NavLink>
+            <NavLink to="/constructor/courses" className="text-lg font-medium text-gray-700 hover:text-blue-600">Конструктор курсов</NavLink>
           </div>
           <div>
             <NavLink to="/teacher/my-courses" className="text-lg font-medium text-gray-700 hover:text-blue-600">Мои курсы</NavLink>

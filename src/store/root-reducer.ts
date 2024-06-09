@@ -1,14 +1,10 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import studentProfile from "./student-profile-reducer";
-import teacherProfile from "./teacher-profile-reducer";
 import teacherMyCourses from "./teacher-myCourses-reducer";
 import auth from "./authSlice";
 import user from "./userSlice"
 
 
-export const rootReducer = combineReducers({
-    studentProfile,
-    teacherProfile,
+export const rootReducer = combineReducers({    
     teacherMyCourses,
     auth,
     user

@@ -77,14 +77,6 @@ export const Courses: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className="text-center mt-8">
-        <button
-          onClick={() => navigate("/constructor/courses")}
-          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
-        >
-          Перейти в конструктор курсов
-        </button>
-      </div>
     </div>
   );
 };

@@ -4,9 +4,6 @@ import { Footer } from "components/Footer/Footer";
 import { Header } from "components/Header/Header";
 import { Login } from "components/Login/Login";
 import { StartPage } from "components/StartPage/StartPage";
-import { StudentProfile } from "components/Students/Profile/Profile";
-import { TeacherProfile } from "components/Teacher/Profile/Profile";
-import { MyStudents } from "components/Teacher/MyStudents/MyStudents";
 import { MyCourses } from "components/Teacher/MyCourses/MyCourses";
 import { UserProfile } from "components/User/UserProfile";
 import { Registration } from "components/Login/Registration";
@@ -36,8 +33,6 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/:id" element={<CourseDetail />} />
           <Route path="/register" element={<Registration />} />
-          <Route path="/teacher/profile" element={<TeacherProfile />} />
-          <Route path="/teacher/my-students" element={<MyStudents />} />
           <Route path="/teacher/my-courses" element={<MyCourses />} />
           <Route path="/teacher/my-courses/:id" element={<CoursePage />} />
           <Route path="/user/profile" element={<UserProfile />} />
