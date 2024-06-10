@@ -3,8 +3,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { login } from "store/authSlice";
-import {NavLink, useNavigate } from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom";
 
 interface JwtPayload {
   id: number;
@@ -17,7 +16,6 @@ export const Login: React.FC = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -55,9 +53,7 @@ export const Login: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-yellow-200 to-green-300">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4">
-          Войти в существующий аккаунт
-        </h2>
+        <h2 className="text-2xl font-bold mb-4">Войти в существующий аккаунт</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -91,10 +87,10 @@ export const Login: React.FC = () => {
               required
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mb-0"
             >
               Войти
             </button>

@@ -7,9 +7,9 @@ import LogoYT from "assets/icons/logoYOUT.svg";
 
 export const Footer = () => {
   return (
-    <div className="flex justify-between items-center px-8 py-4 bg-white text-gray-800">
+    <div className="flex flex-col md:flex-row justify-between items-center px-8 py-4 bg-white text-gray-800">
 
-      <div className="flex items-center">
+      <div className="flex items-center mb-4 md:mb-0">
         <img src={Logo} alt="Logo" className="h-6 mr-2" />
         <div>
           <div className="font-semibold">ElderTech</div>
@@ -17,7 +17,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mb-4 md:mb-0 md:ml-12">
         <div className="flex items-center mb-1">
           <img src={PhoneIcon} alt="Phone" className="h-4 mr-2" />
           <div>+7 (495) 111 22 33</div>

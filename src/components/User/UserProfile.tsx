@@ -81,7 +81,7 @@ export const UserProfile: React.FC = () => {
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : profile ? (
-        <div className="flex items-start space-x-6">
+        <div className="flex flex-col items-center md:items-start space-y-6 md:space-y-0 md:flex-row">
           <div className="flex-shrink-0 flex flex-col items-center mt-4">
             {avatarUrl ? (
               <img
@@ -111,7 +111,7 @@ export const UserProfile: React.FC = () => {
               </button>
             )}
           </div>
-          <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
+          <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto md:mx-0">
             <h1 className="text-2xl font-bold mb-4">Профиль пользователя</h1>
             <div className="space-y-4">
               <div>

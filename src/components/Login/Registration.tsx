@@ -45,8 +45,8 @@ export const Registration = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-yellow-200 to-green-300">
       <div className="max-w-md w-full p-6 bg-white shadow-md rounded-lg">
         <h2 className="text-2xl font-semibold mb-4">Регистрация</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
             <label
               htmlFor="name"
               className="block text-sm font-medium text-gray-700"
@@ -62,7 +62,7 @@ export const Registration = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          <div>
             <label
               htmlFor="surname"
               className="block text-sm font-medium text-gray-700"
@@ -78,7 +78,7 @@ export const Registration = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          <div>
             <label
               htmlFor="phone"
               className="block text-sm font-medium text-gray-700"
@@ -94,7 +94,7 @@ export const Registration = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          <div>
             <label
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
@@ -110,7 +110,7 @@ export const Registration = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          <div>
             <label
               htmlFor="password"
               className="block text-sm font-medium text-gray-700"
@@ -126,7 +126,7 @@ export const Registration = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          <div>
             <button
               type="submit"
               className="w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
