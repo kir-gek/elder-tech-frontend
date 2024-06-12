@@ -38,6 +38,7 @@ export const Registration = () => {
       setErrorMessage(
         "Произошла ошибка при регистрации. Пожалуйста, попробуйте снова."
       );
+      console.log(error)
     }
   };
 

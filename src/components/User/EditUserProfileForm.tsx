@@ -40,8 +40,8 @@ export const EditUserProfileForm: React.FC<EditUserProfileFormProps> = ({ profil
         name: formData.name,
         surname: formData.surname,
         patronymic: formData.patronymic,
-        age: formData.age,
-        gender: formData.gender,
+        age: Number(formData.age),
+        gender: Number(formData.gender),
         phone: formData.phone,
         email: formData.email
       });
@@ -108,8 +108,8 @@ export const EditUserProfileForm: React.FC<EditUserProfileFormProps> = ({ profil
             onChange={handleChange}
             className="w-full border px-2 py-1 rounded"
           >
-            <option value={1}>Мужской</option>
-            <option value={0}>Женский</option>
+            <option value={0}>Мужской</option>
+            <option value={1}>Женский</option>
           </select>
         </div>
         <div>
